@@ -1,0 +1,7 @@
+{
+    "beautify.language": {
+        "html": [
+            "htm", "html", "django-html"
+        ]
+    }
+} 
