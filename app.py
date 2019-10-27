@@ -112,15 +112,23 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
+class LoginForm(Form):
+    
+    username = StringField('Usuario', [validators.Length(min=3, max=25)])
+    password = PasswordField('Password', [validators.DataRequired()])
+    #recaptcha = RecaptchaField()
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        # Get Form Fields
-        username = request.form['username']
-        password_candidate = request.form['password']
 
+    form = LoginForm(request.form)
+
+    if request.method == 'POST' and form.validate():
+
+        # Get Form Fields
+        username = form.username.data
+        password_candidate = form.password.data
         # Create cursor
         cur = mysql.connection.cursor()
 
@@ -138,18 +146,18 @@ def login():
                 session['logged_in'] = True
                 session['username'] = username
 
-                flash('You are now logged in', 'success')
+                flash('¡Bienvenido! Ahora podrás publicar todas tus ofertas 😁', 'success')
                 return redirect(url_for('dashboard'))
             else:
-                error = 'Invalid login'
-                return render_template('login.html', error=error)
+                error = '* ¡Usuario/Contraseña errone@, por favor intente denuevo!'
+                return render_template('login.html', error=error, form=form)
             # Close connection
             cur.close()
         else:
-            error = 'Username not found'
-            return render_template('login.html', error=error)
+            error = '¡Contraseña erronea, por favor intente denuevo!'
+            return render_template('login.html', error=error, form=form)
 
-    return render_template('login.html')
+    return render_template('login.html', form=form)
 
 # Check if user logged in
 def is_logged_in(f):

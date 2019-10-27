@@ -1,16 +1,106 @@
-{% extends 'layout.html' %}
-
 {% block body %}
-  <h1>Login</h1>
-  <form action="" method="POST">
-    <div class="form-group">
-      <label>Username</label>
-      <input type="text" name="username" class="form-control" value={{request.form.username}}>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="icon" type="image/png" src="{{ url_for('static', filename='images/icons/favicon.ico') }}" />
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/util.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<style>.login100-form-btn { background:#00a088;}</style>
+<!--===============================================================================================-->
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="{{ url_for('static', filename='images/logo-taloo-color.png') }}" style="margin-top: 100px;" alt="IMG">
+            </div>
+            <form class="login100-form validate-form" action="" method="POST" id="lg">
+                {{ form.csrf_token }}
+                <span class="login100-form-title">
+                    ¡Bienvenidos a Taloo Usuarios!
+                </span>
+
+                <div class="wrap-input100 validate-input" data-validate="Es necesario ingresar el usuario">
+                    {{ form.username(class="input100", id="username", placeholder="Usuario", value="") }}
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
+                </div>
+                
+                <h5 style="color:red; margin-bottom: 10px;" class="text-center">{{ error }}</h5>
+                
+                <div class="wrap-input100 validate-input" data-validate="La contraseña es requerida">
+                    {{ form.password(class="input100",id="username", placeholder="Contraseña") }}
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                </div>
+                {{ form.recaptcha }}
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn">
+                        ¡Ingresar!
+                    </button>
+                </div>
+
+                <!--<div class="text-center p-t-12">
+                    <span class="txt1">
+                        Olvidaste tu
+                    </span>
+                    <a class="txt2" href="/recovery">
+                        Usuario / Contraseña?
+                    </a>
+                </div>
+
+                <div class="text-center p-t-136">
+                    <a class="txt2" href="#">
+                        Create your Account
+                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                    </a>
+                </div>-->
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" name="password" class="form-control" value={{request.form.password}}>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+</div>
+<!--===============================================================================================-->
+<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<!--===============================================================================================-->
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+<!--===============================================================================================-->
+<script src="{{ url_for('static', filename='vendor/tilt/tilt.jquery.min.js') }}"></script>
+<script>
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+<script>
+    $('.navbar.navbar-default').remove();
+    $('.container').attr('style', 'max-width: 100%; padding: 0px !important;');
+    $(".alert.alert-danger").insertAfter(".wrap-input100.validate-input");
+</script>
+<!--===============================================================================================-->
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+<script>
+$("form").submit(function(event) {
+
+   var recaptcha = $("#g-recaptcha-response").val();
+   if (recaptcha === "") {
+      event.preventDefault();
+      alert("¡Por favor haga click en el verificador!");
+   }
+});
+</script>
 {% endblock %}

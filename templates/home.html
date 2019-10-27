@@ -2,11 +2,11 @@
 
 {% block body %}
   <div class="jumbotron text-center">
-    <h1>Welcome To FlaskApp</h1>
-    <p class="lead">This application is built on the Python Flask framework and is the focus for the "Python Flask From Scratch" YouTube series</p>
+    <h1>¡Bienvenidos a tu Portal Usuarios!</h1>
+    <p class="lead">En este portal podrás registrarte para subir tu currículum y otros datos para obtener las mejores ofertas.</p>
     {% if session.logged_in == NULL %}
-      <a href="/register" class="btn btn-primary btn-lg">Register</a>
-      <a href="/login" class="btn btn-success btn-lg">Login</a>
+      <a href="/register" class="btn btn-primary btn-lg">Registrarse</a>
+      <a href="/login" class="btn btn-success btn-lg">Ingresar</a>
     {% endif %}
   </div>
 {% endblock %}

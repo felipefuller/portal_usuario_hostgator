@@ -3,6 +3,7 @@
         color: white;
     }
 </style>
+{% if session.logged_in %}
 <nav class="navbar navbar-default" style="height: 70px; background: #00a088;">
     <div class="container">
         <div class="navbar-header">
@@ -12,7 +13,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            {% if session.logged_in %}
             <a class="navbar-brand" style="padding-top: 0px;" href="/dashboard">
+            {% else %}
+            <a class="navbar-brand" style="padding-top: 0px;" href="/">
+            {% endif %}
                 <img src="{{ url_for('static', filename='images/logo-taloo.png') }}" alt="" width="210" height="65">
             </a>
         </div>
@@ -37,3 +42,4 @@
         <!--/.nav-collapse -->
     </div>
 </nav>
+{% endif %}
