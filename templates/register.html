@@ -72,19 +72,22 @@
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate="La contraseña es requerida">
-                    {{ form.confirm(class="input100",id="password", placeholder="Confirmar contraseña") }}
+                    {{ form.confirm(class="input100",id="password_confirm", placeholder="Confirmar contraseña") }}
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
                 </div>
               
-              {% if error_user is defined or form.password.errors %}
-                  <h5 class="errors" style="color:red;">¡Usuario o contraseña errone@!</h5>
+              {% if error_user != 'None' or form.password.errors %}
+                  <h5 class="errors" style="color:red;">{{ error_user }}</h5>
+              {% endif %}
+              {% if error_password != 'None' %}
+                  <h5 class="errors" style="color:red;">{{ error_password }}</h5>
               {% endif %}
 
                 <div class="container-login100-form-btn">
-                    <button type="submit" class="login100-form-btn">
+                    <button type="submit" class="login100-form-btn" onclick="validate()">
                         ¡Registrase!
                     </button>
                 </div>

@@ -6,6 +6,7 @@ from passlib.hash import sha256_crypt
 from functools import wraps
 from werkzeug.utils import secure_filename
 import os
+from password_strength import PasswordPolicy
 
 app = Flask(__name__)
 
@@ -95,12 +96,22 @@ def register():
         username = form.username.data
         password = sha256_crypt.encrypt(str(form.password.data))
 
+        policy = PasswordPolicy.from_names(
+            length=8,  # min length: 8
+            uppercase=1,  # need min. 2 uppercase letters
+            numbers=2,  # need min. 2 digits
+            special=0,  # need min. 2 special characters
+            nonletters=0,  # need min. 2 non-letter characters (digits, specials, anything)
+        )
+
+        validate_password = policy.test(form.password.data)
+
         # Create cursor
         cur = mysql.connection.cursor()
 
         user_validator = cur.execute("SELECT username FROM users WHERE username = %s", [username])
 
-        if user_validator == 0:
+        if user_validator == 0 and len(validate_password) == 0:
             # Execute query
             cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
 
@@ -114,8 +125,17 @@ def register():
 
             return redirect(url_for('login'))
         else:
-            user = "¡Usuario o contraseña erronea!"
-            return render_template('register.html', form=form, error_user=user)
+            if len(validate_password) != 0:
+                error_password = "¡Contraseña muy débil, incluya una Mayúscula y al menos 2 números!"
+            else:
+                error_user = "None"
+            if user_validator != 0:
+                error_user = "¡Usuario o contraseña erronea!"
+            else:
+                error_password = "None"
+            return render_template('register.html', form=form, error_user=error_user, error_password=error_password)
+            # Close connection
+            cur.close()
     return render_template('register.html', form=form)
 
 class LoginForm(Form):
