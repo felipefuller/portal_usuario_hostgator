@@ -107,7 +107,7 @@ def register():
         # Close connection
         cur.close()
 
-        flash('You are now registered and can log in', 'success')
+        flash('¡Ahora que estás registrado puedes ingresar!', 'success')
 
         return redirect(url_for('login'))
     return render_template('register.html', form=form)

@@ -14,6 +14,7 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/util.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
 <style>.login100-form-btn { background:#00a088;}</style>
 <!--===============================================================================================-->
 
@@ -46,11 +47,15 @@
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
                 </div>
-                {{ form.recaptcha }}
+
                 <div class="container-login100-form-btn">
                     <button type="submit" class="login100-form-btn">
                         ¡Ingresar!
                     </button>
+                </div>
+
+                <div class="container-login100-form-btn">
+                      <a href="/" class="login100-form-btn" id="login">Volver</a>
                 </div>
 
                 <!--<div class="text-center p-t-12">
