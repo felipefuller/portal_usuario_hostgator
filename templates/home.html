@@ -1,12 +1,76 @@
-{% extends 'layout.html' %}
-
 {% block body %}
-  <div class="jumbotron text-center">
-    <h1>¡Bienvenidos a tu Portal Usuarios!</h1>
-    <p class="lead">En este portal podrás registrarte para subir tu currículum y otros datos para obtener las mejores ofertas.</p>
-    {% if session.logged_in == NULL %}
-      <a href="/register" class="btn btn-primary btn-lg">Registrarse</a>
-      <a href="/login" class="btn btn-success btn-lg">Ingresar</a>
-    {% endif %}
-  </div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="icon" type="image/png" src="{{ url_for('static', filename='images/icons/favicon.ico') }}" />
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/util.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+<style>.login100-form-btn { background:#00a088;}</style>
+<!--===============================================================================================-->
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="{{ url_for('static', filename='images/logo-taloo-color.png') }}" alt="IMG" id="logo-company">
+            </div>
+            <div class="login100-form">
+                <span class="login100-form-title" id="home-title">
+                    ¡Bienvenidos a Taloo Usuarios!
+                </span>
+
+                <div class="container-login100-form-btn">
+                      <a href="/register" class="login100-form-btn">¡Registrarse!</a>
+                </div>
+
+                <div class="container-login100-form-btn">
+                      <a href="/login" class="login100-form-btn" id="login">¡Ingresar!</a>
+                </div>
+                
+
+                <!--<div class="text-center p-t-12">
+                    <span class="txt1">
+                        Olvidaste tu
+                    </span>
+                    <a class="txt2" href="/recovery">
+                        Usuario / Contraseña?
+                    </a>
+                </div>
+
+                <div class="text-center p-t-136">
+                    <a class="txt2" href="#">
+                        Create your Account
+                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                    </a>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--===============================================================================================-->
+<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<!--===============================================================================================-->
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+<!--===============================================================================================-->
+<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+<!--===============================================================================================-->
+<script src="{{ url_for('static', filename='vendor/tilt/tilt.jquery.min.js') }}"></script>
+<script>
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+<!--===============================================================================================-->
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
 {% endblock %}
