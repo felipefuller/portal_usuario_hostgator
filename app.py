@@ -98,18 +98,24 @@ def register():
         # Create cursor
         cur = mysql.connection.cursor()
 
-        # Execute query
-        cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
+        user_validator = cur.execute("SELECT username FROM users WHERE username = %s", [username])
 
-        # Commit to DB
-        mysql.connection.commit()
+        if user_validator == 0:
+            # Execute query
+            cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
 
-        # Close connection
-        cur.close()
+            # Commit to DB
+            mysql.connection.commit()
 
-        flash('¡Ahora que estás registrado puedes ingresar!', 'success')
+            # Close connection
+            cur.close()
 
-        return redirect(url_for('login'))
+            flash('¡Ahora que estás registrado puedes ingresar!', 'success')
+
+            return redirect(url_for('login'))
+        else:
+            user = "¡Usuario o contraseña erronea!"
+            return render_template('register.html', form=form, error_user=user)
     return render_template('register.html', form=form)
 
 class LoginForm(Form):

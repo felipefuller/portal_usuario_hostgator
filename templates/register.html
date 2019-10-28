@@ -28,7 +28,7 @@
             <form class="login100-form validate-form" action="" method="POST">
                 {{ form.csrf_token }}
                 <span class="login100-form-title">
-                    ¡Bienvenidos a Taloo Usuarios!
+                    ¡Regístrate en Taloo!
                 </span>
 
                 <div class="wrap-input100 validate-input" data-validate="Es necesario ingresar el usuario">
@@ -39,27 +39,29 @@
                     </span>
                 </div>
                 
-                <h5 style="color:red; margin-bottom: 10px;" class="text-center">{{ error }}</h5>
-                
                 <div class="wrap-input100 validate-input" data-validate="La contraseña es requerida">
                     {{ form.email(class="input100",id="email", placeholder="Correo") }}
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
                 </div>
 
-                <h5 style="color:red; margin-bottom: 10px;" class="text-center">{{ error }}</h5>
+                {% if form.email.errors %}
+                  <h5 class="errors">{% for error in form.email.errors %} {{ error }} {% endfor %}</h5>
+                {% endif %}
                 
                 <div class="wrap-input100 validate-input" data-validate="La contraseña es requerida">
                     {{ form.username(class="input100",id="username", placeholder="Usuario") }}
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
+                        <i class="fa fa-users" aria-hidden="true"></i>
                     </span>
                 </div>
 
-                <h5 style="color:red; margin-bottom: 10px;" class="text-center">{{ error }}</h5>
+                {% if form.username.errors %}
+                  <h5 class="errors">{% for error in form.username.errors %} {{ error }} {% endfor %}</h5>
+                {% endif %}
                 
                 <div class="wrap-input100 validate-input" data-validate="La contraseña es requerida">
                     {{ form.password(class="input100",id="password", placeholder="Contraseña") }}
@@ -76,6 +78,10 @@
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
                 </div>
+              
+              {% if error_user is defined or form.password.errors %}
+                  <h5 class="errors" style="color:red;">¡Usuario o contraseña errone@!</h5>
+              {% endif %}
 
                 <div class="container-login100-form-btn">
                     <button type="submit" class="login100-form-btn">
