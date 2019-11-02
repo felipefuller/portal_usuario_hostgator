@@ -172,7 +172,7 @@ def login():
                 session['logged_in'] = True
                 session['username'] = username
 
-                flash('¡Bienvenido! Ahora podrás publicar todas tus ofertas 😁', 'success')
+                #flash('¡Bienvenido! Ahora podrás publicar todas tus ofertas 😁', 'success')
                 return redirect(url_for('dashboard'))
             else:
                 error = '* ¡Usuario/Contraseña errone@, por favor intente denuevo!'
@@ -192,7 +192,7 @@ def is_logged_in(f):
         if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
-            flash('No autorizado, por favor inicie a su perfil', 'danger')
+            #flash('No autorizado, por favor inicie a su perfil', 'danger')
             return redirect(url_for('login'))
     return wrap
 
@@ -201,30 +201,59 @@ def is_logged_in(f):
 @is_logged_in
 def logout():
     session.clear()
-    flash('You are now logged out', 'success')
+    #flash('You are now logged out', 'success')
     return redirect(url_for('login'))
 
 # Dashboard
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
-    # Create cursor
-    cur = mysql.connection.cursor()
+    # # Create cursor
+    # cur = mysql.connection.cursor()
 
-    # Get articles
-    #result = cur.execute("SELECT * FROM articles")
-    # Show articles only from the user logged in 
-    result = cur.execute("SELECT * FROM articles WHERE author = %s", [session['username']])
+    # # Get articles
+    # #result = cur.execute("SELECT * FROM articles")
+    # # Show articles only from the user logged in 
+    # result = cur.execute("SELECT * FROM articles WHERE author = %s", [session['username']])
 
-    articles = cur.fetchall()
+    # articles = cur.fetchall()
 
-    if result > 0:
-        return render_template('dashboard.html', articles=articles)
-    else:
-        msg = 'No Articles Found'
-        return render_template('dashboard.html', msg=msg)
-    # Close connection
-    cur.close()
+    # if result > 0:
+    #     return render_template('dashboard.html', articles=articles)
+    # else:
+    #     msg = 'No Articles Found'
+    #     return render_template('dashboard.html', msg=msg)
+    # # Close connection
+    # cur.close()
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('¡Error subiendo, intente denuevo!')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('No se seleccionó ningún archivo 😞')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # Create Cursor
+            cur = mysql.connection.cursor()
+
+            # Execute
+            cur.execute("INSERT INTO articles(author, name) VALUES(%s, %s)",(session['username'], session['username'] + filename))
+
+            # Commit to DB
+            mysql.connection.commit()
+
+            #Close connection
+            cur.close()
+            flash('Archivo subido de manera exitosa 😊')
+            return redirect('/dashboard')
+        else:
+            flash('Solo puedes subir archivos pdf, doc y docx 🙁')
+            return redirect(request.url)
+    return render_template('dashboard.html')
 
 # Article Form Class
 class ArticleForm(Form):

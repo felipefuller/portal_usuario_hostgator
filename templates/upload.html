@@ -1,8 +1,9 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<title>Python Flask File Upload Example</title>
-<h2>Select a file to upload</h2>
+<title>Sube tu Currículum</title>
+<h2>Selecciona un archivo para subir tu currículum</h2>
+<h4>¡Puedes subir tu currículum en pdf o word!</h4> 
 <p>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -14,14 +15,14 @@
     {% endif %}
     {% endwith %}
 </p>
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" style="margin-top:30px;">
     <dl>
         <p>
             <input type="file" name="file" autocomplete="off" required>
         </p>
     </dl>
     <p>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Subir">
     </p>
 </form>
 {% endblock %}
