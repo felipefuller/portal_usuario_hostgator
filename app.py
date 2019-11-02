@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
+from flask import Flask, render_template, flash, redirect, abort, url_for, session, request, logging, jsonify, send_from_directory
 #from data import Articles
 from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
@@ -12,6 +12,7 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx'}
+API_KEY = "KTXvLBD7TvoBjVxp9iRyJcJLgWeM3mkS"
 
 # Config MySQL
 app.config['MYSQL_HOST'] = '162.214.68.240'
@@ -28,6 +29,10 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 mysql = MySQL(app)
 #Articles = Articles()
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('dashboard.html'), 404
+    
 # Index
 @app.route('/')
 def index():
@@ -196,6 +201,65 @@ def is_logged_in(f):
             return redirect(url_for('login'))
     return wrap
 
+####################################################
+#################### Stars API #####################
+####################################################
+@app.route('/api/1.0')
+def test():
+    headers = request.headers
+    auth = headers.get("X-Api-Key")
+    if auth == API_KEY:
+        return jsonify({"message": "OK: Authorized"}), 200
+    else:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
+
+@app.route("/api/1.0/uploads")
+def list_files():
+    """Endpoint to list files on the server."""
+    headers = request.headers
+    auth = headers.get("X-Api-Key")
+    if auth == API_KEY:
+        files = []
+        for filename in os.listdir(UPLOAD_FOLDER):
+            path = os.path.join(UPLOAD_FOLDER, filename)
+            if os.path.isfile(path):
+                files.append(filename)
+        return jsonify(files)
+    else:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
+
+
+@app.route("/api/1.0/files/<path:path>")
+def get_file(path):
+    """Download a file."""
+    headers = request.headers
+    auth = headers.get("X-Api-Key")
+    if auth == API_KEY:
+        return send_from_directory(UPLOAD_FOLDER, path, as_attachment=True)
+    else:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
+
+
+@app.route("/api/1.0/files/<filename>", methods=["POST"])
+def post_file(filename):
+    """Upload a file."""
+    headers = request.headers
+    auth = headers.get("X-Api-Key")
+    if auth == API_KEY:
+        if "/" in filename:
+            # Return 400 BAD REQUEST
+            abort(400, "no subdirectories directories allowed")
+
+        with open(os.path.join(UPLOAD_FOLDER, filename), "wb") as fp:
+            fp.write(request.data)
+
+        # Return 201 CREATED
+        return "", 201
+    else:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
+
+####################################################
+
 # Logout
 @app.route('/logout')
 @is_logged_in
@@ -254,6 +318,10 @@ def dashboard():
             flash('Solo puedes subir archivos pdf, doc y docx 🙁')
             return redirect(request.url)
     return render_template('dashboard.html')
+
+@app.route('/uploads/<path:filename>')
+def download_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
 
 # Article Form Class
 class ArticleForm(Form):
