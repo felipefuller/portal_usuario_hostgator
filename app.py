@@ -308,10 +308,10 @@ def dashboard():
 
         cur.close()
         
-        if(exist_file == 0):
-            id = 0
-        else:
+        if(exist_file > 0):
             id = exist_file[0]
+        else:
+            id = 0
             
         # check if the post request has the file part
         if 'file' not in request.files:
