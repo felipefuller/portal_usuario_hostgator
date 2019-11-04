@@ -52,7 +52,7 @@
                 {% endif %}
                 
                 <div class="wrap-input100 validate-input" data-validate="La contraseña es requerida">
-                    {{ form.username(class="input100",id="username", placeholder="Usuario") }}
+                    {{ form.username(class="input100",id="username", placeholder="Usuario", onblur="this.value=removeSpaces(this.value);") }}
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-users" aria-hidden="true"></i>
@@ -132,5 +132,10 @@ $("form").submit(function(event) {
       alert("¡Por favor haga click en el verificador!");
    }
 });
+</script>
+<script language="javascript" type="text/javascript">
+    function removeSpaces(string) {
+     return string.split(' ').join('');
+    }
 </script>
 {% endblock %}
