@@ -298,6 +298,21 @@ def dashboard():
     # # Close connection
     # cur.close()
     if request.method == 'POST':
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Get article by id
+        result = cur.execute("SELECT * FROM archivos WHERE nombre_usuario = %s", [session['username']])
+
+        exist_file = cur.fetchone()
+
+        cur.close()
+        
+        if(exist_file == 0):
+            id = 0
+        else:
+            id = exist_file[0]
+            
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('¡Error subiendo, intente denuevo!')
@@ -313,7 +328,7 @@ def dashboard():
             cur = mysql.connection.cursor()
 
             # Execute
-            cur.execute("INSERT INTO archivos(nombre_usuario, archivo) VALUES(%s, %s)",(session['username'], session['username'] + filename))
+            cur.execute("INSERT INTO archivos(nombre_usuario, archivo) VALUES(%s, %s)",(session['username'], session['username'] + filename + str(id)))
 
             # Commit to DB
             mysql.connection.commit()
