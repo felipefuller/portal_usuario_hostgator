@@ -85,6 +85,8 @@
               {% if error_password != 'None' %}
                   <h5 class="errors" style="color:red;">{{ error_password }}</h5>
               {% endif %}
+              
+              {{ form.recaptcha }}
 
                 <div class="container-login100-form-btn">
                     <button type="submit" class="login100-form-btn" onclick="validate()">
@@ -121,4 +123,14 @@
 </script>
 <!--===============================================================================================-->
 <script src="{{url_for('static', filename='js/main.js')}}"></script>
+<script>
+$("form").submit(function(event) {
+
+   var recaptcha = $("#g-recaptcha-response").val();
+   if (recaptcha === "") {
+      event.preventDefault();
+      alert("¡Por favor haga click en el verificador!");
+   }
+});
+</script>
 {% endblock %}

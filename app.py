@@ -1,6 +1,7 @@
 from flask import Flask, render_template, flash, redirect, abort, url_for, session, request, logging, jsonify, send_from_directory
 #from data import Articles
 from flask_mysqldb import MySQL
+from flask_wtf import RecaptchaField
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
@@ -15,12 +16,18 @@ ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx'}
 API_KEY = "KTXvLBD7TvoBjVxp9iRyJcJLgWeM3mkS"
 
 # Config MySQL
-app.config['MYSQL_HOST'] = '162.214.68.240'
+app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'usuarios_puser19'
 app.config['MYSQL_PASSWORD'] = 'TalooUser_2019.'
 app.config['MYSQL_DB'] = 'usuarios_puser'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 app.config['SECRET_KEY'] = '05686F1CD04C96751262607325F7BA48B3561E566D95ACD2B4E0F5045F5D8DD1'
+
+app.config['RECAPTCHA_USE_SSL']= False
+app.config['RECAPTCHA_PUBLIC_KEY']='6LeFLrwUAAAAAHkPL4QeGZGHHFYiMm78MhO0Fe3C'
+app.config['RECAPTCHA_PRIVATE_KEY']='6LeFLrwUAAAAANL76lW5MN7fqWD_xsT29TOCChZU'
+app.config['RECAPTCHA_OPTIONS']= {'theme':'black'}
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
@@ -89,6 +96,7 @@ class RegisterForm(Form):
         validators.EqualTo('confirm', message='Passwords do not match')
     ])
     confirm = PasswordField('Confirm Password')
+    recaptcha = RecaptchaField()
 
 
 # User Register
@@ -147,7 +155,7 @@ class LoginForm(Form):
     
     username = StringField('Usuario', [validators.Length(min=3, max=25)])
     password = PasswordField('Password', [validators.DataRequired()])
-    #recaptcha = RecaptchaField()
+    recaptcha = RecaptchaField()
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
