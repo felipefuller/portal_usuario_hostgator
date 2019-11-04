@@ -298,21 +298,7 @@ def dashboard():
     # # Close connection
     # cur.close()
     if request.method == 'POST':
-        # Create cursor
-        cur = mysql.connection.cursor()
-
-        # Get article by id
-        result = cur.execute("SELECT * FROM archivos WHERE nombre_usuario = %s", [session['username']])
-
-        exist_file = cur.fetchone()
-
-        cur.close()
         
-        if(exist_file > 0):
-            id = exist_file[0]
-        else:
-            id = 0
-            
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('¡Error subiendo, intente denuevo!')
