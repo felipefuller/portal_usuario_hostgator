@@ -259,7 +259,7 @@ def post_file(filename):
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 
 @app.route("/api/1.0/db_us")
-def list_files():
+def list_files_db():
     headers = request.headers
     auth = headers.get("X-Api-Key")
 
