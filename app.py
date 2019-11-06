@@ -305,7 +305,7 @@ def dashboard():
             cur = mysql.connection.cursor()
 
             # Execute
-            cur.execute("INSERT INTO archivos(nombre_usuario, archivo) VALUES(%s, %s)",(session['username'], filename))
+            cur.execute("INSERT INTO archivos(nombre_usuario, archivo) VALUES(%s, %s)",(session['username'], session['username'] + filename))
 
             # Commit to DB
             mysql.connection.commit()
