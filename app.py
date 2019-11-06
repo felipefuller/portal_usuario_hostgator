@@ -268,9 +268,26 @@ def list_files_db():
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM archivos")
         rows = cur.fetchall()
+        #Close connection
+        cur.close()
         resp = jsonify(rows)
         resp.status_code = 200
         return resp
+    else:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
+
+@app.route("/api/1.0/update_file/<id>")
+def list_files_db():
+    headers = request.headers
+    auth = headers.get("X-Api-Key")
+
+    if auth == API_KEY:
+        # Create cursor
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE archivo SET erased=%s WHERE id=%s",(1, [id]))
+        #Close connection
+        cur.close()
+        return jsonify({"message": "success"}), 200
     else:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 ####################################################
