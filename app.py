@@ -268,9 +268,9 @@ def list_files_db():
         cur = mysql.connection.cursor()
         cur.execute("SELECT * FROM archivos")
         rows = cur.fetchall()
-		resp = jsonify(rows)
-		resp.status_code = 200
-		return resp
+        resp = jsonify(rows)
+        resp.status_code = 200
+        return resp
     else:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 ####################################################
