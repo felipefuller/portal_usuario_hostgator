@@ -209,17 +209,9 @@ def is_logged_in(f):
             return redirect(url_for('login'))
     return wrap
 
-####################################################
-#################### Stars API #####################
-####################################################
-@app.route('/api/1.0')
-def test():
-    headers = request.headers
-    auth = headers.get("X-Api-Key")
-    if auth == API_KEY:
-        return jsonify({"message": "OK: Authorized"}), 200
-    else:
-        return jsonify({"message": "ERROR: Unauthorized"}), 401
+##################################################
+################## Starts API's ##################
+##################################################
 
 @app.route("/api/1.0/uploads")
 def list_files():
@@ -266,6 +258,21 @@ def post_file(filename):
     else:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 
+@app.route("/api/1.0/db_us")
+def list_files():
+    headers = request.headers
+    auth = headers.get("X-Api-Key")
+
+    if auth == API_KEY:
+        # Create cursor
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT * FROM archivos)
+        rows = cur.fetchall()
+		resp = jsonify(rows)
+		resp.status_code = 200
+		return resp
+    else:
+        return jsonify({"message": "ERROR: Unauthorized"}), 401
 ####################################################
 
 # Logout
@@ -280,23 +287,7 @@ def logout():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
-    # # Create cursor
-    # cur = mysql.connection.cursor()
 
-    # # Get articles
-    # #result = cur.execute("SELECT * FROM articles")
-    # # Show articles only from the user logged in 
-    # result = cur.execute("SELECT * FROM articles WHERE author = %s", [session['username']])
-
-    # articles = cur.fetchall()
-
-    # if result > 0:
-    #     return render_template('dashboard.html', articles=articles)
-    # else:
-    #     msg = 'No Articles Found'
-    #     return render_template('dashboard.html', msg=msg)
-    # # Close connection
-    # cur.close()
     if request.method == 'POST':
 
         # check if the post request has the file part
@@ -309,12 +300,12 @@ def dashboard():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], session['username'] + filename))
             # Create Cursor
             cur = mysql.connection.cursor()
 
             # Execute
-            cur.execute("INSERT INTO archivos(nombre_usuario, archivo) VALUES(%s, %s)",(session['username'], session['username'] + filename))
+            cur.execute("INSERT INTO archivos(nombre_usuario, archivo) VALUES(%s, %s)",(session['username'], filename))
 
             # Commit to DB
             mysql.connection.commit()
