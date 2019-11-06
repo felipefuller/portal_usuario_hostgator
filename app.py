@@ -266,7 +266,7 @@ def list_files_db():
     if auth == API_KEY:
         # Create cursor
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM archivos)
+        cur.execute("SELECT * FROM archivos")
         rows = cur.fetchall()
 		resp = jsonify(rows)
 		resp.status_code = 200
