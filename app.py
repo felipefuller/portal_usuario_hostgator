@@ -276,7 +276,7 @@ def list_files_db():
     else:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 
-@app.route("/api/1.0/soft_erase/<id>")
+@app.route("/api/1.0/soft_erase/<id>", methods=["POST"])
 def soft_erase(id):
     headers = request.headers
     auth = headers.get("X-Api-Key")
