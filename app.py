@@ -276,15 +276,15 @@ def list_files_db():
     else:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 
-@app.route("/api/1.0/soft_erase/<id:id>", methods=["POST"])
-def soft_erase(id):
+@app.route("/api/1.0/soft_erase/<path:path>", methods=["POST"])
+def soft_erase(path):
     headers = request.headers
     auth = headers.get("X-Api-Key")
 
     if auth == API_KEY:
         # Create cursor
         cur = mysql.connection.cursor()
-        cur.execute("UPDATE archivo SET erased=%s WHERE id=%s",(1, [id]))
+        cur.execute("UPDATE archivo SET erased=%s WHERE id=%s",(1, [int(path)]))
         #Close connection
         cur.close()
         return jsonify({"message": "success"}), 200
