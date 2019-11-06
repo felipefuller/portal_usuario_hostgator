@@ -419,6 +419,6 @@ def delete_article(id):
 
     return redirect(url_for('dashboard'))
 
-if __name__ == '__main__':
-    app.secret_key='secret123'
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.secret_key='secret123'
+#     app.run(debug=True)
