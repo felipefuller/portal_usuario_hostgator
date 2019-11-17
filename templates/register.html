@@ -1,3 +1,8 @@
+<html>
+<head>
+<title>Portal Usuario</title>
+</head>
+
 {% block body %}
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -86,6 +91,8 @@
                   <h5 class="errors" style="color:red;">{{ error_password }}</h5>
               {% endif %}
               
+              <br>
+              
               {{ form.recaptcha }}
 
                 <div class="container-login100-form-btn">
@@ -139,3 +146,5 @@ $("form").submit(function(event) {
     }
 </script>
 {% endblock %}
+
+</html>

@@ -141,11 +141,11 @@ def register():
             if len(validate_password) != 0:
                 error_password = "¡Contraseña muy débil, incluya una Mayúscula y al menos 2 números!"
             else:
-                error_user = "None"
+                error_password = "None"
             if user_validator != 0:
                 error_user = "¡Usuario o contraseña erronea!"
             else:
-                error_password = "None"
+                error_user = "None"
             return render_template('register.html', form=form, error_user=error_user, error_password=error_password)
             # Close connection
             cur.close()
