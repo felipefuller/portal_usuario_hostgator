@@ -2,7 +2,7 @@ from flask import Flask, render_template, flash, redirect, abort, url_for, sessi
 #from data import Articles
 from flask_mysqldb import MySQL
 from flask_wtf import RecaptchaField
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators, SubmitField, IntegerField
 from passlib.hash import sha256_crypt
 from functools import wraps
 from werkzeug.utils import secure_filename
@@ -13,6 +13,7 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx'}
+ALLOWED_EXTENSIONS_AVATAR = {'jpeg', 'jpg', 'png'}
 API_KEY = "KTXvLBD7TvoBjVxp9iRyJcJLgWeM3mkS"
 
 # Config MySQL
@@ -89,6 +90,7 @@ def article(id):
 # Register Form Class
 class RegisterForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=50)])
+    lastname = StringField('Apellido', [validators.Length(min=1, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
     email = StringField('Email', [validators.Length(min=6, max=50)])
     password = PasswordField('Password', [
@@ -105,6 +107,7 @@ def register():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
         name = form.name.data
+        lastname = form.lastname.data
         email = form.email.data
         username = form.username.data
         password = sha256_crypt.encrypt(str(form.password.data))
@@ -126,7 +129,7 @@ def register():
 
         if user_validator == 0 and len(validate_password) == 0:
             # Execute query
-            cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
+            cur.execute("INSERT INTO users(name, lastname, email, username, password) VALUES(%s, %s, %s, %s, %s)", (name, lastname, email, username, password))
 
             # Commit to DB
             mysql.connection.commit()
@@ -228,7 +231,6 @@ def list_files():
     else:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
 
-
 @app.route("/api/1.0/files/<path:path>")
 def get_file(path):
     """Download a file."""
@@ -238,7 +240,6 @@ def get_file(path):
         return send_from_directory(UPLOAD_FOLDER, path, as_attachment=True)
     else:
         return jsonify({"message": "ERROR: Unauthorized"}), 401
-
 
 @app.route("/api/1.0/files/<filename>", methods=["POST"])
 def post_file(filename):
@@ -301,12 +302,59 @@ def logout():
     #flash('You are now logged out', 'success')
     return redirect(url_for('login'))
 
+
+# User Update Class
+class UserUpdate(Form):
+    name = StringField('Nombre', [validators.Length(min=2, max=20)])
+    lastname = StringField('Apellidos', [validators.Length(min=2, max=20)])
+    email = StringField('Email', [validators.Email(message='Correo incorrecto, por favor revisar')])
+    phone = StringField('Teléfono', [validators.Length(min=0, max=15)])
+    birthdate = StringField('Fecha de nacimiento', [validators.Length(min=0, max=15)])
+    direccion = StringField('Dirección', [validators.Length(min=0, max=60)])
+    country = StringField('País', [validators.Length(min=0, max=15)])
+    comuna = StringField('Comuna', [validators.Length(min=0, max=15)])
+    postal = StringField('Código postal', [validators.Length(min=0, max=10)])
+    web = StringField('Página web', [validators.Length(min=0, max=60)])
+    linkedin = StringField('LinkedIn', [validators.Length(min=0, max=60)])
+    twitter = StringField('Twitter', [validators.Length(min=0, max=20)])
+    submit_update = SubmitField('Actualizar')
+
+# Upload CV Class
+class UploadCv(Form):
+    submit_upload = SubmitField('Subir')
+
+# Upload Avatar Class
+class UploadAvatar(Form):
+    submit_avatar = SubmitField('Image')
+
 # Dashboard
 @app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
+    
+    form_cv = UploadCv(request.form)
+    form_avatar = UploadAvatar(request.form)
+    form = UserUpdate(request.form)
 
-    if request.method == 'POST':
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM users WHERE username = %s", [session['username']])
+    user_name = cur.fetchone()
+    cur.close()
+
+    form.name.data = user_name['name']
+    form.lastname.data = user_name['lastname']
+    form.email.data = user_name['email']
+    form.phone.data = user_name['phone']
+    form.birthdate.data = user_name['birthdate']
+    form.direccion.data = user_name['direccion']
+    form.country.data = user_name['country']
+    form.comuna.data = user_name['comuna']
+    form.postal.data = user_name['postal']
+    form.web.data = user_name['web']
+    form.linkedin.data = user_name['linkedin']
+    form.twitter.data = user_name['twitter']
+
+    if request.method == 'POST' and form_cv.validate() and form_cv.submit_upload.data:
 
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -335,7 +383,66 @@ def dashboard():
         else:
             flash('Solo puedes subir archivos pdf, doc y docx 🙁')
             return redirect(request.url)
-    return render_template('dashboard.html')
+
+    if request.method == 'POST' and form_cv.validate() and form_avatar.submit_avatar.data:
+        print('hola')
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('¡Error subiendo, intente denuevo!')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('No se seleccionó ningún archivo 😞')
+            return redirect(request.url)
+        if file and allowed_file_avatar(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], session['username'] + filename))
+            # Create Cursor
+            cur = mysql.connection.cursor()
+
+            # Execute
+            cur.execute("UPDATE users SET avatar=%s WHERE username=%s",('uploads/' + session['username'] + filename, session['username']))
+
+            # Commit to DB
+            mysql.connection.commit()
+
+            #Close connection
+            cur.close()
+            flash('Archivo subido de manera exitosa 😊')
+            return redirect('/dashboard')
+        else:
+            flash('Solo puedes subir archivos jpeg, jpg y png 🙁')
+            return redirect(request.url)
+
+    if request.method == 'POST' and form.validate() and form.submit_update.data:
+
+        name = request.form['name']
+        lastname = request.form['lastname']
+        email = request.form['email']
+        phone = request.form['phone']
+        birthdate = request.form['birthdate']
+        direccion = request.form['direccion']
+        country = request.form['country']
+        comuna = request.form['comuna']
+        postal = request.form['postal']
+        web = request.form['web']
+        linkedin = request.form['linkedin']
+        twitter = request.form['twitter']
+
+        # Create Cursor
+        cur = mysql.connection.cursor()
+        # Execute
+        cur.execute("UPDATE users SET name=%s, lastname=%s, email=%s, phone=%s, birthdate=%s, direccion=%s, country=%s, comuna=%s, postal=%s, web=%s, linkedin=%s, twitter=%s WHERE username=%s", (name, lastname, email, phone, birthdate, direccion, country, comuna, postal, web, linkedin, twitter, session['username']))
+        # Commit to DB
+        mysql.connection.commit()
+        #Close connection
+        cur.close()
+
+        flash('¡Perfil actualizado!', 'success')
+
+        return redirect(url_for('dashboard'))
+
+    return render_template('dashboard.html', form_cv=form_cv, form=form, form_avatar=form_avatar, avatar_url=user_name['avatar'], user=user_name['name'])
 
 @app.route('/uploads/<path:filename>')
 def download_file(filename):
@@ -376,6 +483,10 @@ def add_article():
 # Upload files CV
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# Upload image Avatar
+def allowed_file_avatar(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS_AVATAR
 
 # Edit Article
 @app.route('/edit_article/<string:id>', methods=['GET', 'POST'])

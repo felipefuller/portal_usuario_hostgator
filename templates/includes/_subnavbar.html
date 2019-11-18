@@ -1,0 +1,32 @@
+{% if session.logged_in %}
+<nav class="navbar navbar-expand">
+    <div class="container">
+        <div id="navbar" class="collapse navbar-collapse" style="margin-top: 10px;">
+            <ul class="nav navbar-nav ml-auto">
+                <li><a class="nav-link" href="/dashboard">Mi Cuenta</a></li>
+                <li><a class="nav-link" href="/dashboard">Empresas Favoritas</a></li>
+                <li><a class="nav-link" href="/dashboard">Artículos Favoritos</a></li>
+                <li><a class="nav-link" href="/dashboard">JOBS</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+// $("#navbar ul li a").on('click', function(){
+//    $("li a").removeClass("active");
+//    $(this).addClass("active");
+//    localStorage.setItem('active', $(this).parent().index());
+// });
+
+// var ele = localStorage.getItem('active');
+// $('#navbar ul li:eq(' + ele + ')').find('a').addClass('active');
+$(document).ready(function() {
+        $("#navbar ul a").click(function(){
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+        });
+    });
+</script>
+{% endif %}

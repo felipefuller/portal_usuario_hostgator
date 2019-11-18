@@ -7,6 +7,7 @@
   </head>
   <body>
     {% include 'includes/_navbar.html' %}
+    {% include 'includes/_subnavbar.html' %}
     <div class="container">
       {% block body %}{% endblock %}
     </div>
@@ -16,5 +17,17 @@
     <script type="text/javascript">
       CKEDITOR.replace('editor')
     </script>
+    <style>
+        a {
+            color: #694892;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .active {
+            border-bottom: 2px solid #009f88;
+        }
+        
+        </style>
   </body>
 </html>
