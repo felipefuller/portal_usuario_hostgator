@@ -3,6 +3,7 @@ from flask import Flask, render_template, flash, redirect, abort, url_for, sessi
 from flask_mysqldb import MySQL
 from flask_wtf import RecaptchaField
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, SubmitField, IntegerField
+from wtforms.fields.html5 import DateField
 from passlib.hash import sha256_crypt
 from functools import wraps
 from werkzeug.utils import secure_filename
@@ -16,7 +17,7 @@ ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx'}
 ALLOWED_EXTENSIONS_AVATAR = {'jpeg', 'jpg', 'png'}
 API_KEY = "KTXvLBD7TvoBjVxp9iRyJcJLgWeM3mkS"
 
-# Config MySQL
+# Config MySQL 162.214.68.240
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'usuarios_puser19'
 app.config['MYSQL_PASSWORD'] = 'TalooUser_2019.'
@@ -310,6 +311,7 @@ class UserUpdate(Form):
     email = StringField('Email', [validators.Email(message='Correo incorrecto, por favor revisar')])
     phone = StringField('Teléfono', [validators.Length(min=0, max=15)])
     birthdate = StringField('Fecha de nacimiento', [validators.Length(min=0, max=15)])
+    #birthdate = DateField('Fecha de nacimiento', format='%d/%m/%Y')
     direccion = StringField('Dirección', [validators.Length(min=0, max=60)])
     country = StringField('País', [validators.Length(min=0, max=15)])
     comuna = StringField('Comuna', [validators.Length(min=0, max=15)])
@@ -385,7 +387,6 @@ def dashboard():
             return redirect(request.url)
 
     if request.method == 'POST' and form_cv.validate() and form_avatar.submit_avatar.data:
-        print('hola')
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('¡Error subiendo, intente denuevo!')

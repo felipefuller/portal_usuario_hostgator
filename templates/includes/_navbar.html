@@ -15,12 +15,12 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse" style="margin-top: 10px;">
             <ul class="nav navbar-nav ml-auto">
-                {% if session.logged_in %}
-                    <a>{% print(filled) %}</a>
-                    <li><a href="/logout" style="color: white;">Salir</a></li>
-                {% else %}
-                    <li><a href="/register">Registrarse</a></li>
-                    <li><a href="/login">Ingresar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://taloo.cl/conoce/" target="_blank" style="color: white;">Conoce Empresas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://taloo.cl/company/take-a-look/" target="_blank" style="color: white;">Quiénes Somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://taloo.cl/empleos/" target="_blank" style="color: white;">Jobs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://taloo.cl/articulos/" target="_blank" style="color: white;">Artículos</a></li>
+                {% if session.logged_in %} 
+                    <li class="nav-item"><a class="nav-link" href="/logout" style="color: white;">Salir</a></li>
                 {% endif %}
             </ul>
         </div>
