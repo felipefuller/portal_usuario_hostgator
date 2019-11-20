@@ -136,7 +136,6 @@
         padding-top: 90px;
         padding-left: 40px;
     }
-    
 </style>
 <!-- <link href="{{ url_for('static', filename='css/style3.css') }}" rel="stylesheet"> -->
 <div class="container space-top space-bottom">
@@ -192,68 +191,101 @@
         </div>
 
         <form method="POST" action="">
-            <div class="space-bottom">
-                <h5>Datos Personales</h5>
-            </div>
-            {{ form.csrf_token }}
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{ render_field(form.name, class_="form-control", placeholder="Fernando") }}
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h5>Datos Personales</h5>
+                            </button>
+                        </h2>
+                    </div>
+
+                    {{ form.csrf_token }}
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ render_field(form.name, class_="form-control", placeholder="Fernando") }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ render_field(form.lastname, class_="form-control", placeholder="Rubio") }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ render_field(form.email, class_="form-control", placeholder="fernando@taloo.cl") }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ render_field(form.phone, class_="form-control", placeholder="+569 1111 2222") }}
+                                </div>
+                            </div>
+                            <div class="form-row space-bottom">
+                                <div class="form-group col-md-4">
+                                    {{ render_field(form.birthdate, class_="form-control", placeholder="16/02/1983") }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{ render_field(form.lastname, class_="form-control", placeholder="Rubio") }}
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <h5>Dirección</h5>
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {{ render_field(form.direccion, class_="form-control") }}
+                                </div>
+                            </div>
+                            <div class="form-row space-bottom">
+                                <div class="form-group col-md-4">
+                                    {{ render_field(form.country, class_="form-control", placeholder="Chile") }}
+                                </div>
+                                <div class="form-group col-md-4">
+                                    {{ render_field(form.comuna, class_="form-control", placeholder="La Reina") }}
+                                </div>
+                                <div class="form-group col-md-4">
+                                    {{ render_field(form.postal, class_="form-control", placeholder="732199") }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{ render_field(form.email, class_="form-control", placeholder="fernando@taloo.cl") }}
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{ render_field(form.phone, class_="form-control", placeholder="+569 1111 2222") }}
-                </div>
-            </div>
-            <div class="form-row space-bottom">
-                <div class="form-group col-md-4">
-                    {{ render_field(form.birthdate, class_="form-control", placeholder="16/02/1983") }}
-                </div>
-            </div>
-            <div class="form-row space-bottom">
-                <h5>Dirección</h5>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{ render_field(form.direccion, class_="form-control") }}
-                </div>
-            </div>
-            <div class="form-row space-bottom">
-                <div class="form-group col-md-4">
-                    {{ render_field(form.country, class_="form-control", placeholder="Chile") }}
-                </div>
-                <div class="form-group col-md-4">
-                    {{ render_field(form.comuna, class_="form-control", placeholder="La Reina") }}
-                </div>
-                <div class="form-group col-md-4">
-                    {{ render_field(form.postal, class_="form-control", placeholder="732199") }}
-                </div>
-            </div>
-            <div class="form-row space-bottom">
-                <h5>Dirección</h5>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-8">
-                    {{ render_field(form.web, class_="form-control") }}
-                </div>
-                <div class="form-group col-md-8">
-                    {{ render_field(form.linkedin, class_="form-control") }}
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4 space-bottom">
-                    {{ render_field(form.twitter, class_="form-control", id="editor") }}
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <h5>Presencia en la Web</h5>
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    {{ render_field(form.web, class_="form-control") }}
+                                </div>
+                                <div class="form-group col-md-8">
+                                    {{ render_field(form.linkedin, class_="form-control") }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4 space-bottom">
+                                    {{ render_field(form.twitter, class_="form-control", id="editor") }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-row">
@@ -261,6 +293,8 @@
                     {{ form.submit_update(class_="form-control upload") }}
                 </div>
             </div>
+
+
             <!-- <div class="form-row">
                 <div class="form-group col-md-12">
                     <h3> Ingresa el logo de tu empresa</h3>
