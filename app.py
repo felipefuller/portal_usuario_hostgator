@@ -162,7 +162,7 @@ class LoginForm(Form):
     
     username = StringField('Usuario', [validators.Length(min=3, max=25)])
     password = PasswordField('Password', [validators.DataRequired()])
-    #recaptcha = RecaptchaField()
+    recaptcha = RecaptchaField()
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
