@@ -138,7 +138,7 @@
     }
 </style>
 <!-- <link href="{{ url_for('static', filename='css/style3.css') }}" rel="stylesheet"> -->
-<div class="container space-top space-bottom">
+<div class="container space-bottom">
     <div class="form-row list-inline">
         <div class="form-group col-md-3">
             <h2>Hola {{ user }}, Este es tu perfil</h2>
@@ -161,7 +161,7 @@
             {% endif %}
             {% endwith %}
         </p>
-        <div class="container space-bottom">
+        <div class="container">
             <div class="form-row list-inline">
                 <div class="form-group">
                     <div class="avatar-upload">
@@ -191,7 +191,7 @@
         </div>
 
         <form method="POST" action="">
-            <div class="accordion" id="accordionExample">
+            <div class="accordion space-bottom" id="accordionExample">
                 <div class="card">
                     <div class="card-header" id="headingOne">
                         <h2 class="mb-0">

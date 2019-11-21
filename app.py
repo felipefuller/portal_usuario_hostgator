@@ -8,6 +8,7 @@ from passlib.hash import sha256_crypt
 from functools import wraps
 from werkzeug.utils import secure_filename
 import os
+import requests
 from password_strength import PasswordPolicy
 
 app = Flask(__name__)
@@ -33,6 +34,8 @@ app.config['RECAPTCHA_OPTIONS']= {'theme':'black'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
+API_KEY_JOBS = "RWDvLBD7TvoDaReNDiRyJcJLgWeM3mkS"
+API_URL = 'https://empresas.taloo.cl/api/1.0'
 
 # init MYSQL
 mysql = MySQL(app)
@@ -159,7 +162,7 @@ class LoginForm(Form):
     
     username = StringField('Usuario', [validators.Length(min=3, max=25)])
     password = PasswordField('Password', [validators.DataRequired()])
-    recaptcha = RecaptchaField()
+    #recaptcha = RecaptchaField()
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
@@ -201,6 +204,21 @@ def login():
             return render_template('login.html', error=error, form=form)
 
     return render_template('login.html', form=form)
+
+@app.route('/jobs')
+def list_jobs():
+
+    headers = {'X-Api-Key': API_KEY_JOBS}
+
+    response = requests.get('{}/jobs'.format(API_URL), headers=headers)
+    available_jobs = response.json()
+
+    if available_jobs:
+        return render_template('jobs.html', available_jobs=available_jobs)
+    else:
+        msg = 'No hay ofertas laborales disponibles 😕'
+        return render_template('jobs.html', msg=msg)
+
 
 # Check if user logged in
 def is_logged_in(f):
