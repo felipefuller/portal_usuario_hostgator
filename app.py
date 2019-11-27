@@ -20,7 +20,7 @@ ALLOWED_EXTENSIONS_AVATAR = {'jpeg', 'jpg', 'png'}
 API_KEY = "KTXvLBD7TvoBjVxp9iRyJcJLgWeM3mkS"
 
 # Config MySQL 162.214.68.240
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '162.214.68.240'
 app.config['MYSQL_USER'] = 'usuarios_puser19'
 app.config['MYSQL_PASSWORD'] = 'TalooUser_2019.'
 app.config['MYSQL_DB'] = 'usuarios_puser'
@@ -612,6 +612,6 @@ def delete_article(id):
 
     return redirect(url_for('dashboard'))
 
-# if __name__ == '__main__':
-#     app.secret_key='secret123'
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.secret_key='secret123'
+    app.run(debug=True)

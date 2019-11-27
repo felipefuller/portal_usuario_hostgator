@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Portal Usuario</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap4.3.1.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   </head>
   <body>
     {% include 'includes/_navbar.html' %}
@@ -23,7 +24,6 @@
         .active {
             border-bottom: 2px solid #009f88;
         }
-        
-        </style>
+    </style>
   </body>
 </html>

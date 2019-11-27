@@ -1,0 +1,1148 @@
+/*
+	  ============================================================
+		   Font Color
+	  ============================================================
+*/
+.kode-candidate-full.kode-single-detail .job-candidate-view .job_employ_text h5:hover a,
+.job_find_wrap.kode-custom-form-1 .banner_form.form2.tab-content .form_field_skill ul .job_serchr_btn .job_search_btn input.theme_btn:hover, 
+.mayor_candidate .job_employ.employ2  .job_employ_list .job_employ_text h5:hover a,
+.bxslider-elementor.text p::before,
+.widget_footer .widget_text_copyright h6:hover a,
+.widget_recent_entries ul li a:hover:before,
+.widget_recent_entries ul li a:hover,
+.blog_next_post ul li a:hover,
+.candidate_hobbies .candidate_hobbies_text a:hover,
+.tags_social .social_icon li a:hover,
+.job_news_text .meta_list li a:hover,
+.detail .meta_list li i,
+.job_widget_link li a:hover,
+.job_news_fig.list .job_news_text .job_top_info li i,
+.job_news_fig.list .job_news_text h5:hover a,
+.job_blog_fig .job_blog_list .job_blog_text h5:hover a,
+.check-list ul a:hover,
+.job_opportunities_text h5 a:hover,
+.job_opportunities_text h4 a:hover,
+.forget_btn,
+.salary_dollar a:hover,
+.feature_text a:hover,
+.job_blog_fig:hover .blog_date,
+.job_blog_text a,
+.next_search_btn a:hover,
+.banner6 .job_opportunities_text h3 a i,
+.banner4_location_list:hover a,
+.view_slider .slick-prev:hover:before, 
+.view_slider .slick-next:hover:before,
+.job_video_play a:hover,
+.job_view_meta a:hover,
+.career_tabs_list li.active a,
+.job_cv_list li a:hover span,
+.job_cv_list li a:hover,
+.sab_banner.banner3 .employ_job_list li a:hover,
+.job_pricing_paln_list li a i,
+.job_pricing_paln_list li a:hover,
+.job_pricing_paln_list li a:before,
+.candidate_link_list li a:focus,
+.candidate_link_list li a:hover,
+.member_btn:hover,
+.member_btn i,
+.job_post .theme_btn i,
+.job_post .theme_btn:hover,
+.bxslider.text p:before,
+.pager_text h6,
+.trending_job_colume:hover .like_btn,
+.trending_job_colume:hover .trending_job_text h4,
+.trending_job_slide .slick-prev:hover:before,
+.trending_job_slide .slick-next:hover:before,
+.trending_skill li a:hover,
+.job_marketing_list ul li.active a,
+.job_marketing_caption ul li a:hover,
+.login_register li a,
+.job_service_list:hover,
+.expert_person:hover,
+.forget_btn:hover,
+.login_field label,
+.login_btn_list p a,
+.mega_row .sidebar_title,
+.mega_list h6,
+.post_register_cheked label a,
+.employer_tabs_list ul li.active a,
+.job_map_list .job_feature_item:hover .feature_text h5,
+.job_map_list .job_feature_item:hover .feature_like a,
+.work_rating_text a span.color:hover,
+.work_rating_text a span,
+.client_rating .dropdown-menu > li > a:hover,
+.client_rating .dropdown-menu > li > a.right span,
+.employ_company_list li a:hover,
+.employ_job_list li a:hover,
+ul#portfolio-filter a.current,
+.job_expert.employer .job_rating li a:hover,
+.job_expert.employer .job_view a:hover,
+.candidate_hobbies_text a:hover,
+.personal_information_text a:hover,
+.job_list_icon li a,
+.sidebar_check label:hover,
+.website_list a i,
+.job_employ.listing:hover .job_employ_text h5,
+.job_employ.listing .job_rating li a:hover,
+.view span:hover,
+.replay,
+.social_icon li a:hover,
+.twitter_feed_text a,
+.twitter_feed_list > a,
+.recent_post_text a:hover,
+.categories_list li a:hover,
+.coming_copyright a,
+/*about us page start*/
+.job_marjor_service_text:hover h5 a,
+.paly_btn,
+.job_about_text > a,
+.breadcrumb li a:hover,
+/*home page start*/
+.job_news_text .job_top_info li a i,
+.widget_logo_text .job_top_info li a i,
+.copyright_text p a,
+.copyright_text p a:hover,
+.widget_links_detail li a:hover,
+.job_top_search.search2 .theme_btn:hover,
+.job_news_fig:hover .job_news_text h5,
+.job_package_categorie ul li a:hover,
+.job_testimonial_wrap .slick-prev:before,
+.job_testimonial_wrap .slick-next:before,
+.job_testimonial_text p:before,
+.job_testimonial_text h6 a,
+.more_listing a,
+.job_opportunities_deta a:hover,
+.job_opportunities_meta li a:hover,
+.user,
+.job,
+.vacancy,
+.job_service_text h4:hover a,
+.job_form_detail > span,
+.job_top_login ul li a:hover,
+.job_top_info li a:hover,
+.navigation li a.active,
+.navigation li a:hover
+{
+	color:#ea4235;
+}
+.widget_search #kode-searchform input[type="button"]:focus,
+.widget_search #kode-searchform  input[type="reset"]:hover,
+.widget_search #kode-searchform  input[type="reset"]:focus,
+.widget_search #kode-searchform  input[type="submit"]:focus,
+.btn-normal-2,
+.theam_btn.animated,
+.city_404_text .theam_btn:hover,
+
+.post-password-form input[type="submit"],
+
+.erorr_text .kode-search .widget-search #kode-searchform label{
+	background-color:#ea4235;
+}
+body.error404,
+.city_404_wrap:after,
+.city_404_wrap.coming.overlay-element:before,
+.city_404_wrap.overlay-element:before{
+	background-color:#182055;
+}
+.btn-normal-2:hover{
+	color:#fff;
+}
+.erorr_text .kode-search .widget-search #kode-searchform input[type="text"]{
+	color:#333;
+}
+.kode-blog-content .page-links a{
+	border-color:#ea4235;
+}
+.kode-blog-content .page-links a,
+.container.width-custom .tips,
+.kode-blog-content .post-password-form input[type="submit"],
+.feature_service_text a{
+	background-color:#ea4235;
+	color:#fff;
+}
+.container.width-custom .tips i{
+	color:#fff;
+}
+/*
+	  ============================================================
+		   Background Color
+	  ============================================================
+*/ 
+.check_btn,
+.tips,
+#search-btn-job-p:hover,
+.tags .social_icon li a:hover,
+.bg_green,
+.widget_follow_us ul li a:hover,
+.widget_tag_cloud  .tagcloud a:hover,
+.job_news_wrap .form-submit .submit,
+.widget_search  .kode-search label,
+.employ_add_link .people-like:hover,
+.login_btn_list .submit-btn,
+.kode-membership-container .columns.active .job_package_list .job_package_monthly:before,
+.job_package_list.active .job_package_monthly:before,
+.blog_date,
+.banner6 .btn_list a.active,
+.banner5 .btn_list a.active,
+.banner4 .btn_list a.active,
+.job_side_video .slick-prev:hover, 
+.job_side_video .slick-next:hover,
+.btn_list a:hover,
+.pagination_wrap.continue > a:hover,
+.candidate_link_section .theme_btn:hover,
+.job_post .theme_btn,
+.top_btn:hover,
+.trending_job_colume:hover .trending_job_apply .theme_btn.btn2,
+.apps_link li a:hover,
+.login_detail:before,
+.coming_text .widegt3_list .job_top_icon_list li a:hover,
+.dl-menuwrapper li a:hover,
+.dl-menuwrapper button,
+.login_register li.active a,
+.wpha-sign-in-signup-wrap .modal-header .close,
+.expert_person span,
+.job_top_bar .modal-header .close,
+.effect,
+.job_opportunities_list.detail .job_applay_list .theme_btn,
+.post_overview_skill li a:hover,
+.post_field .list li:hover,
+.post_register_cheked input[type="checkbox"]:checked + label:before,
+.post_upload_text:hover .theme_btn.btn2,
+.post_upload_list:hover .post_upload_link,
+.active .post_job_list > span,
+.job_map_list .job_feature_item:hover .applay,
+.accordian_text.ui-accordion-content.ui-accordion-content-active,
+.accordian_list.ui-accordion .ui-accordion-header.ui-state-active,
+.all_jobs .theme_btn:hover,
+.show_rating .nice-select .list li:hover,
+.client_rating .btn-default.active.focus,
+ .client_rating .btn-default.active:focus,
+ .client_rating .btn-default.active:hover,
+ .client_rating .btn-default:active.focus,
+ .client_rating .btn-default:active:focus,
+ .client_rating .btn-default:active:hover,
+ .client_rating .open > .dropdown-toggle.btn-default.focus,
+ .client_rating .open > .dropdown-toggle.btn-default:focus,
+ .client_rating .open > .dropdown-toggle.btn-default:hover,
+.client_rating .btn-default,
+.employ_servie p a:before,
+.employ_company_list li a:before,
+.bar,
+.candidate_history_text:before,
+.candidate_education_list h6:before,
+.personal_message input[type=checkbox]:checked + label:before,
+.job_expert:hover .job_experience_list,
+.panel-heading h5 a:focus,
+.panel-collapse .panel-body,
+.faq_title.isOpen,
+.faq_text,
+.sidebar_check input[type=checkbox]:checked + label:before,
+.website_list a:hover,
+.job_employ.listing:hover .applay,
+.job_social_share li a:hover,
+.job_employ:hover .job_view,
+.job_employ:hover .employ_link,
+.timing_drop .nice-select.open .list li:hover,
+.job_loacation,
+.tags_deta a:hover,
+.choose_job,
+.sidebar_search .slick-dots li,
+.categories_list li a:before,
+.job_news_fig.list:hover .theme_btn.btn2,
+/*coming soon page*/
+.coming_text .countdown li,
+/*about page start*/
+.job_marjor_service_text:hover span,
+.paly_btn:hover,
+/*home page start*/
+.modal-footer .btn,
+.form_field_skill .modal-header,
+.copyright_wrap .job_top_icon_list li a:hover,
+.widget_links_detail li a:before,
+.job_top_search.search2 a:hover,
+.search_city .nice-select .list li:hover,
+.job_package_link ul li.active:before,
+.job_form .finder button,
+.main_banner .slick-next,
+.main_banner .slick-prev,
+.widget_links_detail li a:hover:before,
+.job_newsletter_wrap,
+.job_news_text > a,
+.kode-membership-container .columns.active .job_package_list .job_detail,
+.kode-membership-container .columns.active .job_package_list .job_package_monthly,
+.kode-membership-container .columns.active .job_package_list .job_package_monthly:before,
+.job_package_list.active .job_detail,
+.job_package_list.active .job_package_monthly:before,
+.job_package_list:hover .job_detail,
+.job_package_list:hover .job_package_monthly:before,
+.job_testimonial_wrap .slick-dots li.slick-active,
+.job_opportunities_meta li a:hover:before,
+.job_opportunities_deta a,
+.job_work_text > span,
+.job_service_list:hover .job_detail,
+.search_jobs,
+.banner_btn .theme_btn.active:before,
+.theme_btn,
+.drop_fig .dropdown-menu > li > a:focus, 
+.drop_fig  .dropdown-menu > li > a:hover,
+.drop_fig .btn-default.active, .btn-default:active,
+.drop_fig .open > .dropdown-toggle.btn-default,
+.job_top_icon_list li a:hover,
+.btn-hover:before,
+.experience_list .sk-active .check-box-icon:before,
+.job_check_list li.active .check-box-icon:before,
+.job_logo
+{
+	background-color:#ea4235;
+}
+
+/*
+	  ============================================================
+		   Border Color
+	  ============================================================
+*/
+.tags .social_icon li a:hover,
+.widget_follow_us ul li a:hover,
+.job_news_wrap .kf_commet_field input:focus,
+.job_news_wrap .kode-textarea textarea:focus,
+.employ_add_link .people-like:hover,
+.login_list.register1 .nav-tabs > li.active > a,
+.login_list.register1 .nav-tabs > li > a,
+.banner6 .btn_list a.active,
+.banner5 .btn_list a.active,
+.banner4 .btn_list a.active,
+.career_tabs_list li.active a,
+.btn_list a:hover,
+.job_pricing_paln_list li a:hover.price_btn,
+.job_package_categorie h6,
+.candidate_link_list li a:focus,
+.candidate_link_list li a:hover,
+.candidate_link_section .theme_btn:hover,
+.personal_contact textarea:focus,
+.personal_contact input:focus,
+.job_img_list a.active:before,
+.trending_job_colume:hover .like_btn,
+.trending_job_colume:hover .trending_job_apply .theme_btn.btn2,
+.trending_job_colume:hover .trending_job_text:before,
+.job_marketing_list ul li.active a:before,
+.login_register li a,
+.coming_text .widegt3_list .job_top_icon_list li a:hover,
+.login_field input:focus,
+.mega_list .navigation li a:hover:before,
+.navigation li > ul > li > a:hover:before,
+.mega_row,
+.navigation li > ul,
+.job_opportunities_list.detail .job_applay_list .theme_btn,
+.post_overview_skill li a:hover,
+.post_upload_text:hover .theme_btn.btn2,
+.post_area textarea:focus,
+.post_field input:focus,
+.post_jobs_links ul li.active:before,
+.active .post_job_list > span:before,
+.employer_tabs_list ul li.active,
+.job_map_list .job_feature_item:hover .applay,
+.job_map_list .job_feature_item:hover:before,
+.employ_add_link a:hover,
+.personal_message input[type=checkbox]:checked + label:before,
+.job_expert:hover:before,
+.job_list_icon li a:hover,
+.acordian_text > input:focus,
+.website_list a:hover,
+.job_employ.listing:hover .applay,
+.job_employ:hover,
+.comment_area textarea:focus,
+.comment_search input:focus,
+/*blog page start*/
+.pagination_wrap > a:hover,
+.pagination > li > a:hover,
+/*coming soon page start*/
+.coming_search input:focus,
+/*about us page start*/
+.job_marjor_service_text:hover,
+.job_marjor_service_text:hover span,
+.job_about_text > a,
+/*home page start*/
+.modal-footer .btn,
+.kode-membership-container .columns.active .job_package_list:before,
+.job_package_list.active:before,
+.job_package_list:hover:before,
+.more_listing a:before,
+.more_listing a i,
+.job_service_list:hover .job_detail
+.job_service_list:after,
+.job_service_list:before
+{
+	border-color:#ea4235;
+}
+
+
+/*home page two color sceem start */
+
+/*
+	  ============================================================
+		   Font Color
+	  ============================================================
+*/
+.banner_form.form2.kode-custom-form-2 .form_field_skill ul .job_serchr_btn .job_search_btn input:hover,
+.sticky-header-active .kode-navigation-wrapper .navigation > div > .menu > li .sub-menu li.current-menu-item.current_page_item a,
+.sticky-header-active .kode-navigation-wrapper .navigation li > .sub-menu li.current-menu-item.current_page_item a,
+.banner_form.form2 .form_field_skill .job_search_btn:hover i,
+.banner_form.form2 .advance_search:hover,
+.header2 .forget_btn:hover,
+.header2 .login_btn_list p a,
+.header2 .expert_person:hover,
+.header2 .mega_row .sidebar_title,
+.header2 .mega_list h6,
+.main_banner.banner2 .slick-next:hover:before,
+.main_banner.banner2 .slick-prev:hover:before,
+.job_pricing_text > span,
+.job_career_wrap .slick-prev:hover:before, 
+.job_career_wrap .slick-next:hover:before,
+.job_career_text h5 a:hover,
+.job_career_text .job_top_info li a:hover,
+.job_cv_text .job_pricing_detail ul li a:before,
+.job_package_link.pricing ul li.active a,
+.job_pricing_detail ul > li > a:hover,
+.job_pricing_list:hover .job_pricing_text > span,
+.job_pricing_list.active .job_pricing_text > span,
+.job_pricing_list:hover .job_pricing_detail ul > li > a:before,
+.job_pricing_list.active .job_pricing_detail ul > li > a:before,
+.job_feature_item:hover .feature_like a,
+.job_feature_item:hover .feature_text h5,
+.medium_small a span:hover,
+.user_list:hover,
+.header2 .navigation li a:hover,
+.header2 .navigation li a.active
+{
+	color:#ea4235;
+}
+
+/*
+	  ============================================================
+		   Background Color
+	  ============================================================
+*/
+.wpjb-up-btn-form input,
+.wpjb-job-field .large-btn,
+.candidate_detail_page .candidate_play blockquote,
+.job_news_wrap .form-submit .submit,
+.menu_btn,
+.widget_text_copyright .top_btn,
+.kode-pagination a:hover,
+.kode-pagination span.current,
+.sticky-header-active.menu_sticky .menu_btn,
+.job_pricing_detail ul > li > a span,
+.header2 .login_detail::before,
+.header2 .dl-menuwrapper li a:hover,
+.header2.responsive .main_top_wrap,
+.header2 .dl-menuwrapper button,
+.header2 .top_company_list .modal-header .close,
+.header2 .expert_person span,
+.header2 .login_btn_list .theme_btn,
+.header2 .login_register li a,
+.feature_service_wrap.service2 .feature_service_text > span:before,
+.header2 .effect,
+.job_career_wrap .effect,
+.job_pricing_list:hover .btn-hover2:before,
+.job_pricing_list.active .btn-hover2:before,
+.btn-hover2:before,
+.main_banner.banner2 .slick-next,
+.main_banner.banner2 .slick-prev,
+.job_career_wrap .slick-dots li.slick-active,
+.job_cv_categories .theme_btn.btn2,
+.job_cv_expert .theme_btn.btn2.active,
+.job_package_link.pricing ul,
+.most_job,
+.feature_service_text:hover a,
+.feature_service_text.active a,
+.job_feature_item:hover .applay,
+.service_job_list:hover:before,
+.kode-blog-content .more-link span,
+.banner_form.form2 .form_field_skill ul li.job_serchr_btn .theme_btn,
+.banner_form.form2 .search_city .nice-select .list li:hover
+{
+	background-color:#ea4235;
+}
+footer .widget.kode-widget .widget_title:before{
+	border-bottom-color:#ea4235;
+}
+/*
+	  ============================================================
+		   Border Color
+	  ============================================================
+*/
+.kode-pagination a:hover,
+.kode-pagination span.current,
+.sticky-header-active.menu_sticky .top_company_detail li a:hover,
+.header2 .login_register li a,
+.header2 .login_field input:focus,
+.top_company_detail li a:hover,
+ a.btn-hover2:hover:before,
+.header2 .mega_list .navigation li a::before,
+.header2 .mega_row,
+.header2 .navigation li > ul > li > a::before,
+.header2 .navigation li > ul,
+.job_career_text h5 a:hover,
+.job_cv_categories .theme_btn.btn2,
+.job_cv_expert .theme_btn.btn2.active,
+.job_cv_expert .theme_btn.btn2:hover,
+.job_pricing_list:hover,
+.job_pricing_list:hover .btn-hover2:before,
+.job_pricing_list.active .btn-hover2:before,
+.job_pricing_list.active, 
+.job_feature_item:hover .applay,
+.job_feature_item:hover:before,
+.service_job_list,
+.header2
+{
+	border-color:#ea4235;
+}
+
+
+
+
+
+/*home page three color sceem start */
+
+
+
+/*home page two color sceem start */
+
+/*
+	  ============================================================
+		   Font Color
+	  ============================================================
+*/
+.kode_side_icon li a:hover,
+.widegt3_list .job_top_icon_list li a:hover,
+.kode_sidebar_service li a:hover,
+.next-arrow,
+.widget3_links li a:hover,
+.job_find_link li.active a,
+.job_finder_key .key_word span:hover,
+.job_finder_key .advance_search:hover
+
+.color_option .job_career_wrap .slick-prev:hover:before, 
+.color_option .job_career_wrap .slick-next:hover:before,
+.color_option .job_career_text h5 a:hover,
+.color_option .job_career_text .job_top_info li a:hover,
+.color_option .job_cv_text .job_pricing_detail ul li a:before,
+.color_option .job_package_link.pricing ul li.active a,
+.color_option .job_pricing_detail ul > li > a:hover,
+.color_option .job_pricing_list:hover .job_pricing_text > span,
+.color_option .job_pricing_list.active .job_pricing_text > span,
+.color_option .job_pricing_list:hover .job_pricing_detail ul > li > a:before,
+.color_option .job_pricing_list.active .job_pricing_detail ul > li > a:before,
+.color_option .job_feature_item:hover .feature_like a,
+.color_option .job_feature_item:hover .feature_text h5,
+.color_option .medium_small a:hover
+{
+	color:#674bbd;
+}
+
+/*
+	  ============================================================
+		   Background Color
+	  ============================================================
+*/
+.bg_color2,
+.widget3 .top_btn,
+.sidenav:before,
+.widegt3_info,
+.color_option .feature_service_text > span:before,
+.color_option .job_career_wrap .effect,
+.color_option .job_career_wrap .slick-dots li.slick-active,
+.feature_categorie_text:hover,
+.job_download_app.app2:after,
+.best_job_find,
+.job_find_wrap .banner_form.form2 .search_city .nice-select .list li:hover,
+.job_find_wrap .banner_form.form2 .form_field_skill ul li.job_serchr_btn .theme_btn
+
+.color_option .job_career_wrap .slick-dots li.slick-active,
+.color_option .job_career_text > a:hover,
+.color_option .job_package_link.pricing ul,
+.color_option .most_job,
+.color_option .job_pricing_list:hover .theme_btn.btn2,
+.color_option .job_pricing_list.active .theme_btn.btn2,
+.color_option .feature_service_text:hover a,
+.color_option .feature_service_text.active a,
+.color_option .job_feature_item:hover .applay,
+.color_option .service_job_list:hover:before,
+.color_option .banner_form.form2 .form_field_skill ul li.job_serchr_btn .theme_btn,
+.color_option .banner_form.form2 .search_city .nice-select .list li:hover
+{
+	background-color:#674bbd;
+}
+
+/*
+	  ============================================================
+		   Border Color
+	  ============================================================
+*/
+h6.border-color1,
+.header2.hdr3 .login_register li.active a,
+.header2 .login_register li.active a,
+.kode_side_icon li a:hover,
+.feature_categorie_text:hover,
+.job_find_link li.active a.theme_btn:before,
+
+.color_option .job_career_text h5 a:hover,
+.color_option .job_cv_categories .theme_btn.btn2,
+.color_option .job_pricing_list:hover,
+.color_option .job_pricing_list:hover .theme_btn.btn2,
+.color_option .job_pricing_list.active .theme_btn.btn2,
+.color_option .job_pricing_list.active, 
+.color_option .job_feature_item:hover .applay,
+.color_option .job_feature_item:hover:before,
+.color_option .service_job_list,
+.color_option .header2,
+.color_option .top_company_detail li a:hover
+{
+	border-color:#674bbd;
+}
+
+
+.color_option .forget_btn:hover,
+.color_option .login_btn_list p a,
+.color_option .expert_person:hover,
+.color_option   .mega_row .sidebar_title,
+.header2.hdr3 .mega_list h6,
+.color_option .user_list:hover,
+.color_option .header2 .navigation li a:hover,
+.color_option .header2 .navigation li a.active{
+	color:#fdb928;
+}
+.bg_color1,
+.header2.hdr3 .login_detail::before,
+.header2.hdr3 .dl-menuwrapper li a:hover,
+.header2.hdr3 .dl-menuwrapper button,
+.color_option .top_company_list .modal-header .close,
+.color_option .expert_person span,
+.color_option .login_btn_list .theme_btn,
+.color_option .login_register li a,
+.color_option .recent_post .effect,
+.btn-hover3:before,
+.feature_service .all_job .theme_btn,
+.color_option .job_career_text > a,
+.color_option .job_cv_categories .theme_btn.btn2,
+.color_option .job_cv_expert .theme_btn.btn2.active,
+.color_option .job_find_wrap .banner_form.form2 .form_field_skill ul li.job_serchr_btn .theme_btn:hover,
+.more_video:hover a,
+.stories_text a:hover,
+.color_option .main_banner .slick-next,
+.color_option .main_banner .slick-prev,
+.color_option .banner_btn .theme_btn.active:before, 
+.color_option .banner_btn .theme_btn:hover:before{
+	background-color:#fdb928;
+}
+.header2.hdr3 .login_field input:focus,
+.header2.hdr3 .login_register li a,
+.color_option .job_load_more .theme_btn.btn-hover3:hover,
+.header2.hdr3 .mega_list .navigation li a::before,
+.header2.hdr3 .mega_row,
+.header2.hdr3 .navigation li > ul > li > a::before,
+.header2.hdr3 .navigation li > ul,
+.color_option .job_cv_categories .theme_btn.btn2,
+.color_option .job_cv_expert .theme_btn.btn2.active,
+.color_option .job_cv_expert .theme_btn.btn2:hover,
+.more_video:hover i,
+.stories_text a:hover{
+	border-color:#fdb928;
+}
+
+
+/*home page 04 color*/
+.blog1_text h5:hover a,
+.blog1_text .job_top_info li a i,
+.color_option4 .trending_job_slide .slick-prev:hover:after,
+.color_option4 .trending_job_slide .slick-next:hover:before,
+.color_option4 .bxslider.text p::before,
+.color_option4 .pager_text h6,
+.header4 .recent_post_text a:hover,
+.header4 .mega_row .sidebar_title,
+.header4 .mega_list h6,
+.color_option4 .mega_list .navigation li a:hover,
+.color_option4 .job_marketing_caption ul li a:hover,
+.color_option4 .job_service_list:hover,
+.color_option4 .trending_job_colume:hover .like_btn,
+.color_option4  .trending_skill li a:hover,
+.color_option4  .login_register li a,
+.color_option4 .login_btn_list p a,
+.color_option4 .login_field label,
+.color_option4 .login_heading h4,
+.color_option4 .job_news_text .job_top_info li a i,
+.color_option4 .widget_logo_text .job_top_info li a i,
+.color_option4 .copyright_text p a,
+.color_option4 .copyright_text p a:hover,
+.color_option4 .widget_links_detail li a:hover,
+.color_option4 .job_top_search.search2 .theme_btn:hover,
+.color_option4 .job_news_fig:hover .job_news_text h5,
+.color_option4 .job_package_categorie ul li a:hover,
+.color_option4 .job_testimonial_wrap .slick-prev:before,
+.color_option4 .job_testimonial_wrap .slick-next:before,
+.color_option4 .job_testimonial_text p:before,
+.color_option4 .job_testimonial_text h6 a,
+.color_option4 .more_listing a,
+.color_option4 .job_opportunities_deta a:hover,
+.color_option4 .job_opportunities_meta li a:hover,
+.color_option4 .user,
+.color_option4 .job,
+.color_option4 .vacancy,
+.color_option4 .job_service_text h4:hover a,
+.color_option4 .job_form_detail > span,
+.color_option4 .navigation li > ul > li > a:hover,
+.color_option4 .job_top_info li a:hover{
+	color:#30bfea;
+}
+.blog1_text .theme_btn,
+.bg_color1,
+.color_option4 .job_marketing_list ul li.active a, 
+.color_option4 .trending_job_slide .slick-dots li.slick-active,
+.header4 .dl-menuwrapper li a:hover,
+.header4 button.close,
+.main_banner.bnr4,
+.color_option4  .job_top_nav_wrap .job_top_search .theme_btn,
+.color_option4 .login_btn_list .theme_btn,
+.color_option4 .effect,
+.color_option4 .all_job .theme_btn,
+.color_option4 .trending_job_colume:hover .trending_job_apply .theme_btn.btn2,
+.color_option4 .login_register li.active a,
+.color_option4 .job_top_bar .modal-header .close,
+.color_option4 .login_detail::before,
+.color_option4 .modal-footer .btn,
+.color_option4 .form_field_skill .modal-header,
+.color_option4 .copyright_wrap .job_top_icon_list li a:hover,
+.color_option4 .widget_links_detail li a:before,
+.color_option4 .job_top_search.search2 a:hover,
+.color_option4 .search_city .nice-select .list li:hover,
+.color_option4 .job_package_link ul li.active:before,
+.color_option4 .job_form .finder button,
+.color_option4 .top_btn,
+.color_option4 .main_banner .slick-next,
+.color_option4 .main_banner .slick-prev,
+.color_option4 .widget_links_detail li a:hover:before,
+.color_option4 .job_newsletter_wrap,
+.color_option4 .job_news_text > a,
+.color_option4 .job_package_list.active .job_detail,
+.color_option4 .job_package_list.active .job_package_monthly:before,
+.color_option4 .job_package_list:hover .job_detail,
+.color_option4 .job_package_list:hover .job_package_monthly:before,
+.color_option4 .job_testimonial_wrap .slick-dots li.slick-active,
+.color_option4 .job_opportunities_meta li a:hover:before,
+.color_option4 .job_opportunities_deta a,
+.color_option4 .job_work_text > span,
+.color_option4 .job_service_list:hover .job_detail,
+.color_option4 .search_jobs,
+.color_option4 .banner_btn .theme_btn.active:before,
+.color_option4 .drop_fig .dropdown-menu > li > a:focus, 
+.color_option4 .drop_fig  .dropdown-menu > li > a:hover,
+.color_option4 .drop_fig .btn-default.active, .btn-default:active,
+.color_option4 .drop_fig .open > .dropdown-toggle.btn-default,
+.color_option4 .job_top_icon_list li a:hover,
+.color_option4 .job_logo{
+	background-color:#30bfea;
+}
+h6.border-color,
+.color_option4 .job_img_list a.active:before, 
+.header4 button.close,
+.color_option4 .mega_row,
+.color_option4 .mega_list .navigation li a:hover::before,
+.color_option4 .trending_job_colume:hover .like_btn,
+.color_option4 .trending_job_colume:hover .trending_job_apply .theme_btn.btn2,
+.color_option4 .trending_job_colume:hover .trending_job_text:before,
+.color_option4 .job_marketing_list ul li.active a:before,
+.color_option4 .login_field input:focus,
+.color_option4 .login_register li a,
+.color_option4 .navigation li > ul,
+.color_option4 .navigation li > ul > li > a:before,
+.color_option4 .modal-footer .btn,
+.color_option4 .job_package_list.active:before,
+.color_option4 .job_package_list:hover:before,
+.color_option4 .more_listing a:before,
+.color_option4 .more_listing a i,
+.color_option4 .job_service_list:hover .job_detail
+.color_option4 .job_service_list:after,
+.color_option4 .job_service_list:before{
+	border-color:#30bfea;
+}
+
+
+
+/*
+	  ============================================================
+		   Trandition
+	  ============================================================
+*/
+}
+.check_form_btn .wpha_btn.check_btn,
+#search-btn-job-p,
+.tags .social_icon li a,
+.kode-candidate-full.kode-single-detail .job-candidate-view .job_employ_text h5 a,
+.service_job_list:before,
+.sticky-header-active.menu_sticky .main_top_wrap,
+.modal_body .job_search_btn i,
+.banner_form.form2 .form_field_skill ul li.job_serchr_btn .theme_btn,
+.mayor_candidate .job_employ.employ2  .job_employ_list .job_employ_text h5 a,
+.kode-pagination a,
+.kode-pagination span.current,
+.job_marketing_caption ul li a,
+.banner_form.form2.tab-content .form_field_skill .job_search_btn i,
+.sticky-header-active.menu_sticky .menu_btn,
+.sticky-header-active.menu_sticky .top_company_detail li a,
+.widget_follow_us ul li a,
+.widget_footer .widget_text_copyright h6 a,
+.widget_recent_entries ul li a::before,
+.widget_recent_entries ul li a,
+.widget_tag_cloud  .tagcloud a,
+.job_news_wrap .kf_commet_field input:focus,
+.job_news_wrap .kode-textarea textarea:focus,
+.blog_next_post ul li a,
+.candidate_hobbies .candidate_hobbies_text a,
+.job_widget_link li a,
+.job_news_fig.list .job_news_text h5 a,
+.job_blog_fig .job_blog_list .job_blog_text h5 a,
+.feature_categorie_text h6 a,
+.employ_add_link .people-like,
+.check-list ul a,
+.job_opportunities_text h5 a,
+.job_opportunities_text h4 a,
+.banner_form.form2 .advance_search,
+.blog1_text h5 a,
+.real_btn,
+.job_blog_text a,
+.blog_date,
+.job_blog_fig,
+.job_blog_text,
+.next_search_btn a,
+.banner4_location_list a,
+.view_slider .job_view_text,
+.job_video_play a,
+.job_side_video .slick-prev, 
+.job_side_video .slick-next,
+.job_view_meta a,
+.career_tabs_list li.active a,
+.job_cv_list li a span,
+.job_cv_list li a,
+.job_price_plan,
+.job_pricing_paln_list li a,
+.pagination_wrap.continue > a,
+.btn-hover3:before,
+.btn-hover2:before,
+.btn-hover1:before,
+.candidate_link_list li a,
+.member_btn,
+.candidate_link_section .theme_btn,
+.job_post .theme_btn:after,
+.job_post .theme_btn:before,
+.medium_small a span,
+.personal_contact textarea,
+.personal_contact input,
+.service_job_list,
+.header4 button.close,
+.home_list figure,
+.pager_text,
+.job_img_list a.active:before,
+.job_img_list a.active figure,
+.like_btn,
+.trending_job_text h4,
+.trending_job_colume,
+.trending_job_slide .slick-prev:before,
+.trending_job_slide .slick-next:before,
+.job_marketing_list ul li a,
+.job_marketing_list ul li a:before,
+.job_marketing_caption ul li a,
+.job_service_text > span,
+.job_post .theme_btn i,
+.drop_fig .dropdown-menu > li > a,
+.job_news_fig,
+.kode_side_icon li a,
+.job_feature_item,
+.more_video a,
+.kode_sidebar_service li a,
+.kode_side_icon li a,
+.dl-menuwrapper li a,
+.login_register li.active a,
+.expert_person,
+.forget_btn,
+.login_field input,
+.job_career_fig,
+.bg_icon3:before,
+.bg_icon2:before,
+.bg_icon1:before,
+.bg_icon:before,
+.comment_fig,
+.kode-author,
+.job_add,
+.job_expert.list,
+.job_expert.employer,
+.feature_service_text > span,
+.main_banner.banner2 .slick-next,
+.main_banner.banner2 .slick-prev,
+.post_overview_skill li a,
+.post_field .list li,
+.post_register_cheked input[type="checkbox"]:checked + label:before,
+.post_upload_link a,
+.post_upload_link span,
+.post_upload_link,
+.post_area textarea:focus,
+.post_field input:focus,
+.post_jobs_links ul li.active:before,
+.active .post_job_list > span:before,
+.active .post_job_list > span,
+.post_job_table .job_package_list .most_job,
+.employer_tabs_list ul li.active,
+.employer_tabs_list ul li.active a,
+.client_rating .dropdown-menu > li > a,
+.client_rating .dropdown-menu,
+.employ_servie p a,
+.employ_servie p a:before,
+.employ_company_list li a,
+.employ_job_list li a,
+.job_expert.employer .job_rating li a,
+.job_expert.employer .job_view a,
+.candidate_hobbies_text a,
+.personal_message input[type=checkbox]:checked + label:before,
+.personal_information_text a,
+.job_opportunities_list.job2,
+.job_experience_list,
+.job_experience_list li a,
+.job_expert,
+.job_expert:before,
+.job_list_icon li a,
+.faq_title.isOpen:before,
+.faq_title.isOpen,
+.sidebar_check label,
+.acordian_text > input,
+.website_list a i,
+.website_list a,
+ .job_employ_text h5,
+.job_employ.listing .applay,
+.job_employ.listing .job_rating li a,
+.view span,
+.job_social_share li a,
+.view,
+.active_link,
+.job_rating li a,
+.job_view,
+.employ_link,
+.job_employ,
+.timing_drop .nice-select.open .list li,
+.comment_area textarea,
+.comment_search input,
+.replay,
+.social_icon li a,
+.tags_deta a,
+.choose_job a,
+.recent_post_text a,
+.categories_list li a:before,
+.categories_list li a,
+.pagination_wrap > a i,
+.coming_text .job_top_icon_list li a,
+.coming_search input:focus,
+.job_core_feature,
+.job_marjor_service_text,
+.job_marjor_service_text h5 a,
+.job_marjor_service_text span,
+.paly_btn,
+.breadcrumb li a,
+/* home page 3*/
+.next-arrow,
+.feature_categorie_text p,
+.feature_categorie_text h6,
+.more_video i,
+.stories_text a,
+.widegt3_info .job_top_info li a,
+.widegt3_list .job_top_icon_list li a,
+.widget3_links li a,
+.feature_categorie_text,
+.job_finder_key .key_word,
+.job_finder_key .advance_search,
+/*home page 2*/
+.job_download_fig a,
+.job_career_wrap .slick-prev:before, 
+.job_career_wrap .slick-next:before,
+.job_career_text > a,
+.job_career_text h5 a,
+.feature_service_text a,
+.medium_small a,
+.user_list,
+.top_company_detail li a,
+/*home page 1*/
+.copyright_wrap .job_top_icon_list li a,
+.job_top_search.search2 a,
+.search_city .nice-select .list li,
+.search_city.icon .nice-select .list li,
+.copyright_text p a,
+.widget_links_detail li a:before,
+.widget_links_detail li a,
+.job_top_icon_list.list2 li a,
+.job_news_text h5,
+.job_news_text > a,
+.job_news_fig,
+.job_package_link ul li.active,
+.job_mobile_apps_fig a,
+.more_listing a,
+.job_opportunities_deta a,
+.job_opportunities_meta li a:before,
+.job_opportunities_meta li a,
+.job_opportunities_list,
+.job_detail,
+.job_service_text h4 a,
+.job_detail a,
+.job_detail,
+.job_service_text,
+.job_service_list,
+.search_jobs a,
+.job_top_login ul li a,
+.job_top_info li a,
+
+.drop_fig .dropdown-menu > li > a:focus, 
+.drop_fig  .dropdown-menu > li > a,
+.job_top_icon_list li a
+{
+	-webkit-transition:all 0.3s ease-in-out;
+		-moz-transition:all 0.3s ease-in-out;
+			-ms-transition:all 0.3s ease-in-out;
+				-o-transition:all 0.3s ease-in-out;
+				transition:all 0.3s ease-in-out;
+}
+.navigation li ul,
+.navigation li a,
+.mega_list .navigation li a:before,
+.navigation li > ul > li > a:before,
+.navigation li > ul > li > a{
+	-webkit-transition:all 0.2s ease-in-out;
+		-moz-transition:all 0.2s ease-in-out;
+			-ms-transition:all 0.2s ease-in-out;
+				-o-transition:all 0.2s ease-in-out;
+				transition:all 0.2s ease-in-out;
+}
+
+.mega_detail,
+
+.employ_add_link a,
+.tags_list li a,
+.pagination_wrap > a,
+.pagination > li > a,
+.color_option .job_load_more .theme_btn.btn-hover3,
+.top_company_detail li a,
+.theme_btn.btn2.btn-hover2,
+.banner_btn .theme_btn:after,
+.job_load_more .theme_btn,
+.detail_jobs_links .theme_btn,
+.theme_btn.btn2,
+.job_news_fig.list .theme_btn.btn2,
+.job_find_wrap .banner_form.form2 .form_field_skill ul li.job_serchr_btn .theme_btn,
+.job_cv_expert .theme_btn.btn2,
+.job_top_search.search2 .theme_btn,
+.theme_btn,
+.job_post .theme_btn,
+.banner_btn .theme_btn,
+.job_applay_list .theme_btn,
+.btn-hover:before{
+	-webkit-transition:all 0.6s ease-in-out;
+		-moz-transition:all 0.6s ease-in-out;
+			-ms-transition:all 0.6s ease-in-out;
+				-o-transition:all 0.6s ease-in-out;
+					transition:all 0.6s ease-in-out;
+}
+.job_service_text > span{
+	-webkit-transition:all 1s ease-in-out;
+		-moz-transition:all 1s ease-in-out;
+			-ms-transition:all 1s ease-in-out;
+				-o-transition:all 1s ease-in-out;
+					transition:all 1s ease-in-out;
+}
+/*home page 2*/
+.job_top_search input:focus,
+.job_finder_key .key_word span,
+.top_btn,
+.trending_job_detail,
+.trending_job_text:before,
+.trending_skill li a,
+.apps_link li a,
+.login_register li a,
+.job_opportunities_list.offer figure,
+.job_opportunities_list.offer,
+.work_rating_text a span.color,
+.show_rating .nice-select .list li,
+.most_job,
+.job_pricing_detail ul > li > a,
+.job_pricing_text > span,
+.job_pricing_detail ul > li > a:before,
+.job_pricing_list,
+.theme_btn.btn2,
+.star,
+.job_feature_item:after,
+.job_time a,
+.feature_like a,
+.applay,
+.feature_text h5,
+.job_feature_item:before,
+
+.service_job_list h6 a,
+.service_job_list,
+.banner_form.form2 .search_skill input:focus,
+/*home page 1*/
+.job_package_link ul li:before,
+.finder.active ,
+.main_banner .slick-next,
+.main_banner .slick-prev,
+.job_package_list,
+
+.job_detail a,
+.job_package_categorie ul li a,
+.job_package_monthly span,
+.job_package_monthly p,
+.custom_size sup,
+.custom_size,
+.job_package_monthly,
+.job_package_list:before,
+.job_package_monthly:before,
+.drop_fig .btn-default.active, .btn-default:active,
+.drop_fig .open > .dropdown-toggle.btn-default{
+-webkit-transition:all 0.5s ease-in-out;
+		-moz-transition:all 0.5s ease-in-out;
+			-ms-transition:all 0.5s ease-in-out;
+				-o-transition:all 0.5s ease-in-out;
+					transition:all 0.5s ease-in-out;
+}
+
+
+
+.about_fig figure img{
+	-webkit-transition:all 1s ease-in-out;
+		-moz-transition:all 1s ease-in-out;
+			-ms-transition:all 1s ease-in-out;
+				-o-transition:all 1s ease-in-out;
+					transition:all 1s ease-in-out;
+}
+
+.evening,
+.dark-bg{
+	background-color:#283139;
+}
+.night,
+.them_bg{
+	background-color:#ea4235;
+}
+.afternoon{
+	background-color:#ea4235;
+}
+.them_border{
+	border-color:#ea4235;
+}
+
+.morning{
+	background-color:#60b514;
+}
+.theam_btn.animated{
+	color:#fff;
+	padding:10px 20px;
+}
+.main_bg{
+	background-color:#f5f5f5;
+}
+.white_bg{
+	background-color:#fff;
+}

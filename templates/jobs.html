@@ -1,13 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<link rel='stylesheet' id='jobly-style-css' href='https://www.taloo.cl/wp-content/themes/jobly/style.css?ver=1.2' media='all' />
-<link rel='stylesheet' id='jobly-typo-css' href='https://www.taloo.cl/wp-content/themes/jobly/css/themetypo.css?ver=5.2.3' media='all' />
-<link rel='stylesheet' id='jobly-color-css' href='https://www.taloo.cl/wp-content/themes/jobly/css/color.css?ver=5.2.3' media='all' />
-<link rel='stylesheet' id='style2' href='https://www.taloo.cl/wp-content/uploads/style2.css' media='all' />
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href=" https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_jobs.css') }}"  media='all'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/themetypo.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/color_jobs.css') }}" media='all'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/jobs_adjust.css') }}" media='all'>
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <style>
 .hide {
     display:none
