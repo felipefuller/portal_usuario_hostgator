@@ -115,7 +115,6 @@
 
     .round {
         border-radius: 5px;
-        border: 1px solid black;
         background: white
     }
 
@@ -128,6 +127,11 @@
         font-size: 16px;
     }
 
+    h4 {
+        color: #8e9095;
+        font-size: 16px;
+    }
+
     body {
         background: #f9f7f7;
     }
@@ -136,174 +140,192 @@
         padding-top: 90px;
         padding-left: 40px;
     }
+
+    main {
+        background: repeating-linear-gradient(
+        135deg,
+        #e6e5e6,
+        #e6e5e6 2px,
+        #f0f0f0 2px,
+        #f0f0f0 14px
+        );;
+    }
 </style>
 <!-- <link href="{{ url_for('static', filename='css/style3.css') }}" rel="stylesheet"> -->
-<div class="container space-bottom">
-    <div class="form-row list-inline">
-        <div class="form-group col-md-3">
-            <h2>Hola {{ user }}, Este es tu perfil</h2>
-        </div>
-        <div class="form-group">
-            <img src="{{ url_for('static', filename='images/lampara_taloo.png') }}" height="100px" width="65px">
-        </div>
-    </div>
-</div>
-<div class="jumbotron jumbotron-fluid col-md-8 round" style="padding-top: 0px">
-    <div class="container side col-md-10">
-        <p>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul class=flashes>
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {% endwith %}
-        </p>
-        <div class="container">
-            <div class="form-row list-inline">
-                <div class="form-group">
-                    <div class="avatar-upload">
-                        <div class="avatar-edit">
-                            <!-- <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-                            <label for="imageUpload"></label> -->
-                            <form method="POST" enctype="multipart/form-data" name="myform">
-                                <input type='file' id="imageUpload" name="file" autocomplete="off" accept=".png, .jpg, .jpeg" />
-                                <label for="imageUpload"></label>
-                                {{ form_avatar.submit_avatar(class_="form-control upload", id="submit_avatar") }}
+  <div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="background: #383e48 !important; padding: 0px;">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item" style="border-bottom: 3px solid #282c32; margin-bottom: 20px;;">
+                        <div class="form-group">
+                            <div class="avatar-upload" style="margin-bottom: 0px">
+                                <div class="avatar-edit">
+                                    <!-- <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    <label for="imageUpload"></label> -->
+                                    <form method="POST" enctype="multipart/form-data" name="myform">
+                                        <input type='file' id="imageUpload" name="file" autocomplete="off" accept=".png, .jpg, .jpeg" />
+                                        <label for="imageUpload"></label>
+                                        {{ form_avatar.submit_avatar(class_="form-control upload", id="submit_avatar") }}
+                                    </form>
+                                </div>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview" style="background-image: url({{ avatar_url }});">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="text-center">{{ user }} {{ lastname }}</h4>
+                    </li>
+                    {% include 'includes/_subnavbar.html' %}
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="jumbotron col-md-8 round" style="margin-left:60px; margin-top:40px;">
+                <div class="container side col-md-10">
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            <h2>¡Hola {{ user }}!</h2>
+                            <h2>Este es tu perfil de Taloo</h2>
+                        </div>
+                    </div>
+                    <p>
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <ul class=flashes>
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% endwith %}
+                    </p>
+                    <form method="POST" action="" class="space-bottom">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <h5>Datos Personales</h5>
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                {{ form.csrf_token }}
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                {{ render_field(form.name, class_="form-control", placeholder="Fernando") }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                {{ render_field(form.lastname, class_="form-control", placeholder="Rubio") }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                {{ render_field(form.email, class_="form-control", placeholder="fernando@taloo.cl") }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                {{ render_field(form.phone, class_="form-control", placeholder="+569 1111 2222") }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row space-bottom">
+                                            <div class="form-group col-md-4">
+                                                {{ render_field(form.birthdate, class_="form-control datepicker", placeholder="16/02/1983") }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <h5>Dirección</h5>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                {{ render_field(form.direccion, class_="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row space-bottom">
+                                            <div class="form-group col-md-4">
+                                                {{ render_field(form.country, class_="form-control", placeholder="Chile") }}
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                {{ render_field(form.comuna, class_="form-control", placeholder="La Reina") }}
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                {{ render_field(form.postal, class_="form-control", placeholder="732199") }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <h5>Presencia en la Web</h5>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-8">
+                                                {{ render_field(form.web, class_="form-control") }}
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                {{ render_field(form.linkedin, class_="form-control") }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4 space-bottom">
+                                                {{ render_field(form.twitter, class_="form-control") }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                {{ form.submit_update(class_="form-control upload") }}
+                            </div>
+                        </div>
+                        <!-- <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <h3> Ingresa el logo de tu empresa</h3>
+                                
+                            </div>
+                        </div> -->
+                    </form>
+                    <div class="form-row list-inline">
+                        <div class="form-group">
+                            <label>Sube tu Currículum (formato pdf, word, etc)</label>
+                            <form method="POST" enctype="multipart/form-data">
+                                <input type="file" name="file" autocomplete="off" id="file" required>
+                                {{ form_cv.submit_upload(class_="form-control upload") }}
                             </form>
                         </div>
-                        <div class="avatar-preview">
-                            <div id="imagePreview" style="background-image: url({{ avatar_url }});">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group full-horizontal">
-                    <label>Sube tu Currículum (formato pdf, word, etc)</label>
-                    <form method="POST" enctype="multipart/form-data">
-                        <input type="file" name="file" autocomplete="off" id="file" required>
-                        {{ form_cv.submit_upload(class_="form-control upload") }}
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <form method="POST" action="">
-            <div class="accordion space-bottom" id="accordionExample">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <h5>Datos Personales</h5>
-                            </button>
-                        </h2>
-                    </div>
-
-                    {{ form.csrf_token }}
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    {{ render_field(form.name, class_="form-control", placeholder="Fernando") }}
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    {{ render_field(form.lastname, class_="form-control", placeholder="Rubio") }}
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    {{ render_field(form.email, class_="form-control", placeholder="fernando@taloo.cl") }}
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    {{ render_field(form.phone, class_="form-control", placeholder="+569 1111 2222") }}
-                                </div>
-                            </div>
-                            <div class="form-row space-bottom">
-                                <div class="form-group col-md-4">
-                                    {{ render_field(form.birthdate, class_="form-control datepicker", placeholder="16/02/1983") }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <h5>Dirección</h5>
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    {{ render_field(form.direccion, class_="form-control") }}
-                                </div>
-                            </div>
-                            <div class="form-row space-bottom">
-                                <div class="form-group col-md-4">
-                                    {{ render_field(form.country, class_="form-control", placeholder="Chile") }}
-                                </div>
-                                <div class="form-group col-md-4">
-                                    {{ render_field(form.comuna, class_="form-control", placeholder="La Reina") }}
-                                </div>
-                                <div class="form-group col-md-4">
-                                    {{ render_field(form.postal, class_="form-control", placeholder="732199") }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <h5>Presencia en la Web</h5>
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-8">
-                                    {{ render_field(form.web, class_="form-control") }}
-                                </div>
-                                <div class="form-group col-md-8">
-                                    {{ render_field(form.linkedin, class_="form-control") }}
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4 space-bottom">
-                                    {{ render_field(form.twitter, class_="form-control", id="editor") }}
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    {{ form.submit_update(class_="form-control upload") }}
-                </div>
-            </div>
-
-
-            <!-- <div class="form-row">
-                <div class="form-group col-md-12">
-                    <h3> Ingresa el logo de tu empresa</h3>
-                    
-                </div>
-            </div> -->
-        </form>
+        </main>
     </div>
 </div>
+
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {

@@ -10,6 +10,7 @@ from werkzeug.utils import secure_filename
 import os
 import requests
 from password_strength import PasswordPolicy
+import json
 
 app = Flask(__name__)
 
@@ -162,7 +163,7 @@ class LoginForm(Form):
     
     username = StringField('Usuario', [validators.Length(min=3, max=25)])
     password = PasswordField('Password', [validators.DataRequired()])
-    recaptcha = RecaptchaField()
+    #recaptcha = RecaptchaField()
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
@@ -205,16 +206,60 @@ def login():
 
     return render_template('login.html', form=form)
 
-@app.route('/jobs')
+@app.route('/jobs', methods=['GET'])
 def list_jobs():
+
+    # Define variables to count jobs and companies availables
+    company = []
+    area = []
+    areas = []
+    company = []
+    count_company = {}
+    count_area = {}
 
     headers = {'X-Api-Key': API_KEY_JOBS}
 
     response = requests.get('{}/jobs'.format(API_URL), headers=headers)
     available_jobs = response.json()
 
+    for available_job in available_jobs:
+        area.append(str(available_job['area']))
+        company.append(str(available_job['author']))
+    
+    companies = list(dict.fromkeys(company))
+    companies.sort()
+
+    areas = list(dict.fromkeys(area))
+    areas.sort()
+
+    for comp in companies:
+        count = company.count(comp)
+        count_company[comp] = count
+        company_count = json.dumps(count_company)
+    
+    company_count = json.loads(company_count)
+
+    bar = request.args.to_dict()
+    print(bar)
+
+
+    for each_area in areas:
+        count = area.count(each_area)
+        count_area[each_area] = count
+        area_count = json.dumps(count_area)
+    
+    area_count = json.loads(area_count)
+
+    # for work in areas:
+    #     for available_job in available_jobs:
+    #         if str(available_job['area']) == work:
+    #             count_area[work].append(str(available_job['area']))
+    #             total_work = json.dumps(count_area)
+
+    # print(count_area)
+    
     if available_jobs:
-        return render_template('jobs.html', available_jobs=available_jobs)
+        return render_template('jobs.html', available_jobs=available_jobs, areas=areas, area_count=area_count, companies=companies, company_count=company_count)
     else:
         msg = 'No hay ofertas laborales disponibles 😕'
         return render_template('jobs.html', msg=msg)
@@ -461,7 +506,7 @@ def dashboard():
 
         return redirect(url_for('dashboard'))
 
-    return render_template('dashboard.html', form_cv=form_cv, form=form, form_avatar=form_avatar, avatar_url=user_name['avatar'], user=user_name['name'])
+    return render_template('dashboard.html', form_cv=form_cv, form=form, form_avatar=form_avatar, avatar_url=user_name['avatar'], user=user_name['name'], lastname=user_name['lastname'])
 
 @app.route('/uploads/<path:filename>')
 def download_file(filename):
