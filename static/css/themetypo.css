@@ -1,10 +1,10 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+/* html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
 	border: 0;
 	font-size: 100%;
 	margin: 0;
 	outline: 0;
 	vertical-align: baseline;
-}
+} */
 article,  aside,  details,  figcaption,  figure,  footer,  header,  hgroup,  nav,  section {
 	display: block;
 }
@@ -520,7 +520,7 @@ body {
 	margin: 0px;
 }
 /* Heading Typo */
-body h1, body h2, body h3, body h4, body h5, body h6 {
+body h1, body h2, body h3, body h5, body h6 {
     color: #333333;
     font-style: normal;
     margin: 0px 0 12px;

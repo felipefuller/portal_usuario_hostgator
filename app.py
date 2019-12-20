@@ -20,7 +20,7 @@ ALLOWED_EXTENSIONS_AVATAR = {'jpeg', 'jpg', 'png'}
 API_KEY = "KTXvLBD7TvoBjVxp9iRyJcJLgWeM3mkS"
 
 # Config MySQL 162.214.68.240
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '162.214.68.240'
 app.config['MYSQL_USER'] = 'usuarios_puser19'
 app.config['MYSQL_PASSWORD'] = 'TalooUser_2019.'
 app.config['MYSQL_DB'] = 'usuarios_puser'
@@ -44,7 +44,7 @@ mysql = MySQL(app)
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('dashboard.html'), 404
+    return redirect('/dashboard'), 404
     
 # Index
 @app.route('/')
@@ -163,7 +163,7 @@ class LoginForm(Form):
     
     username = StringField('Usuario', [validators.Length(min=3, max=25)])
     password = PasswordField('Password', [validators.DataRequired()])
-    recaptcha = RecaptchaField()
+    #recaptcha = RecaptchaField()
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
@@ -592,6 +592,182 @@ def edit_article(id):
 
     return render_template('edit_article.html', form=form)
 
+@is_logged_in
+def myID():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id FROM users WHERE username = %s", [session['username']])
+    user_id = cur.fetchone()
+    cur.close()
+    return user_id
+
+@is_logged_in
+def addLikes(user_id, job_id):
+     # Retrieve user data
+    cur = mysql.connection.cursor()
+    # Get user by username
+    cur.execute("INSERT INTO follow_company(user_id, job_id) VALUES (%s, %s)", [user_id, job_id])
+    mysql.connection.commit()
+    cur.close()
+
+@is_logged_in
+def deleteLikes(job_id):
+     # Retrieve user data
+    cur = mysql.connection.cursor()
+    # Get user by username
+    cur.execute("DELETE FROM follow_company WHERE job_id = (%s)", [job_id])
+    mysql.connection.commit()
+    cur.close()
+
+@is_logged_in
+def listLikes():
+
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id FROM users WHERE username = %s", [session['username']])
+    user_name = cur.fetchone()
+    user_id = user_name['id']
+
+
+    # Get user by username
+    cur.execute("SELECT * FROM follow_company WHERE user_id = (%s)", [user_id])
+    user = cur.fetchall()
+    cur.close()
+    return user
+
+@app.route('/like', methods=['GET', 'POST'])
+@is_logged_in
+def like():
+
+    if request.method == 'POST':
+        job_id = request.form['id']
+
+        # headers = {'X-Api-Key': API_KEY_JOBS}
+        # response = requests.get('{}/job/{}'.format(API_URL, job_id), headers=headers)
+        # available_jobs = response.json()
+        # print(available_jobs)
+
+        user = myID()
+        user_id = user['id']
+
+        addLikes(user_id, job_id)
+
+        return json.dumps({'status':'OK'})
+
+@app.route('/unlike', methods=['GET', 'POST'])
+@is_logged_in
+def unlike():
+
+    if request.method == 'POST':
+        job_id = request.form['id']
+
+        # headers = {'X-Api-Key': API_KEY_JOBS}
+        # response = requests.get('{}/job/{}'.format(API_URL, job_id), headers=headers)
+        # available_jobs = response.json()
+        # print(available_jobs)
+
+        deleteLikes(job_id)
+
+        return json.dumps({'status':'OK'})
+
+@app.route('/my_jobs')
+@is_logged_in
+def my_jobs():
+
+    form_avatar = UploadAvatar(request.form)
+
+    # Define variables to count jobs and companies availables
+    company = []
+    area = []
+    areas = []
+    company = []
+    count_company = {}
+    count_area = {}
+    available_jobs = []
+
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id, avatar, name, lastname FROM users WHERE username = %s", [session['username']])
+    user_name = cur.fetchone()
+    user_id = user_name['id']
+
+
+    # Get user by username
+    cur.execute("SELECT * FROM follow_company WHERE user_id = (%s)", [user_id])
+    users = cur.fetchall()
+    cur.close()
+
+    if request.method == 'POST' and form_avatar.submit_avatar.data:
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('¡Error subiendo, intente denuevo!')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('No se seleccionó ningún archivo 😞')
+            return redirect(request.url)
+        if file and allowed_file_avatar(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], session['username'] + filename))
+            # Create Cursor
+            cur = mysql.connection.cursor()
+
+            # Execute
+            cur.execute("UPDATE users SET avatar=%s WHERE username=%s",('uploads/' + session['username'] + filename, session['username']))
+
+            # Commit to DB
+            mysql.connection.commit()
+
+            #Close connection
+            cur.close()
+            flash('Archivo subido de manera exitosa 😊')
+            return redirect('/my_jobs')
+        else:
+            flash('Solo puedes subir archivos jpeg, jpg y png 🙁')
+            return redirect(request.url)
+    
+    headers = {'X-Api-Key': API_KEY_JOBS}
+    
+    for user in users:
+        response = requests.get('{}/job/{}'.format(API_URL, user['job_id']), headers=headers)
+        available_jobs.append(response.json())
+
+    print(available_jobs)
+    
+    if len(available_jobs) > 0:
+        for available_job in available_jobs:
+            area.append(str(available_job[0]['area']))
+            company.append(str(available_job[0]['author']))
+
+        companies = list(dict.fromkeys(company))
+        companies.sort()
+
+        areas = list(dict.fromkeys(area))
+        areas.sort()
+
+        for comp in companies:
+            count = company.count(comp)
+            count_company[comp] = count
+            company_count = json.dumps(count_company)
+        
+        # if len(company_count) > 0:
+        #     company_count = json.loads(company_count)
+        # else:
+        #     company_count = 0
+
+
+        bar = request.args.to_dict()
+        print(bar)
+
+
+        for each_area in areas:
+            count = area.count(each_area)
+            count_area[each_area] = count
+            area_count = json.dumps(count_area)
+        
+        area_count = json.loads(area_count)
+        return render_template('my_jobs.html', available_jobs=available_jobs, areas=areas, area_count=area_count, companies=companies, company_count=company_count, form_avatar=form_avatar, avatar_url=user_name['avatar'], user=user_name['name'], lastname=user_name['lastname'])
+    else:
+        msg = 'No sigues ninguna oferta laboral 😕'
+        return render_template('my_jobs.html', msg=msg, form_avatar=form_avatar, avatar_url=user_name['avatar'], user=user_name['name'], lastname=user_name['lastname'])
+
 # Delete Article
 @app.route('/delete_article/<string:id>', methods=['POST'])
 @is_logged_in
@@ -612,6 +788,6 @@ def delete_article(id):
 
     return redirect(url_for('dashboard'))
 
-# if __name__ == '__main__':
-#     app.secret_key='secret123'
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.secret_key='secret123'
+    app.run(debug=True)

@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/themetypo.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/color_jobs.css') }}" media='all'>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/jobs_adjust.css') }}" media='all'>
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
 .hide {
     display:none
@@ -41,6 +41,12 @@
 <div class="container" style="margin-top: 20px;">
     <div class="row">
         <div class="col-md-3">
+                <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#" id="all">Mostrar todos</a>
+                        </li>
+                    </ul>
+                </br>
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <h5>Empresas disponibles</h5>
@@ -78,8 +84,13 @@
                                 <div class="job_opportunities_text adjust_bottom">
                                     <h5>{{available_job['title']}}</h5>
                                     <ul class="job_opportunities_meta">
-                                        <li><a href="#">{{available_job['jornada']}}</a></li>
-                                        <li><a href="#">{{available_job['area']}}</a></li>
+                                        <li><a href="#" id="btn_{{available_job['id']}}" name="follow" value="{{available_job['id']}}">Sigue este trabajo <img width="25" height="25" src="{{ url_for('static', filename='images/like.png') }}" alt=""></a></li>
+                                        {% if(available_job['jornada']|length > 0) %}
+                                            <li><a href="#">{{available_job['jornada']}}</a></li>
+                                        {% endif %}
+                                        {% if(available_job['area']|length > 0) %}
+                                            <li><a href="#">{{available_job['area']}}</a></li>
+                                        {% endif %}
                                     </ul>
                                     <div class="job_applay_list adjust_button">
                                         <span>
@@ -114,6 +125,28 @@
         console.log(area) 
         $('#jobs').children().hide();
         $('#jobs [id*="'+ area + '"]').show();
+    });
+    $('#all').on('click', function (e) {
+        e.preventDefault();
+        $('#jobs .row').show();
+    });
+
+    // function submitform() {   document.form.submit(); } 
+
+     
+    $(document).on('click','[id^="btn_"]',function(){
+        var spId = {id:$(this).attr('id').split('_')[1]};
+        $.ajax({
+            url: 'like',
+            method: 'POST',
+            data: {id:$(this).attr('id').split('_')[1]},
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log('error');
+            }
+        });
     });
 </script>
 

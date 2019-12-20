@@ -1,0 +1,303 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_jobs.css') }}" media='all'>
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/themetypo.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/color_jobs.css') }}" media='all'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/jobs_adjust.css') }}" media='all'> 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+    html,body {
+  height: 100%;
+}
+    img{ max-width: 100%; height: auto; }
+    .hide {
+        display: none
+    }
+
+    #ready-input {
+        margin-top: 160px;
+        margin-right: 100px;
+        z-index: 1;
+    }
+
+    .avatar-upload {
+        position: relative;
+        max-width: 205px;
+        margin: 50px auto;
+    }
+
+    .avatar-upload .avatar-edit {
+        position: absolute;
+        right: 12px;
+        z-index: 1;
+        top: 10px;
+    }
+
+    .avatar-upload .avatar-edit form input {
+        display: none;
+    }
+
+    .avatar-upload .avatar-edit form input+label {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 100%;
+        background: #FFFFFF;
+        border: 1px solid transparent;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .avatar-upload .avatar-edit form input+label:hover {
+        background: #f1f1f1;
+        border-color: #d6d6d6;
+    }
+
+    .avatar-upload .avatar-edit form input+label:after {
+        content: "\f040";
+        font-family: 'FontAwesome';
+        color: #757575;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: auto;
+    }
+
+    .avatar-upload .avatar-preview {
+        width: 192px;
+        height: 192px;
+        position: relative;
+        border-radius: 100%;
+        border: 6px solid #F8F8F8;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .avatar-upload .avatar-preview>div {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    main {
+        background: repeating-linear-gradient(135deg,
+                #e6e5e6,
+                #e6e5e6 2px,
+                #f0f0f0 2px,
+                #f0f0f0 14px);
+    }
+
+label {
+    font-size: 14px;
+}
+
+h5 {
+    color: #694892;
+    font-size: 16px;
+}
+
+h4 {
+    color: #8e9095;
+    font-size: 16px;
+}
+
+body {
+    background: #f9f7f7;
+}
+
+.full-horizontal {
+    padding-top: 90px;
+    padding-left: 40px;
+}
+
+    .round {
+        border-radius: 5px;
+        background: white
+    }
+</style>
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="background: #383e48 !important; padding: 0px;">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item" style="border-bottom: 3px solid #282c32; margin-bottom: 20px;;">
+                        <div class="form-group">
+                            <div class="avatar-upload" style="margin-bottom: 0px">
+                                <div class="avatar-edit">
+                                    <!-- <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    <label for="imageUpload"></label> -->
+                                    <form method="POST" enctype="multipart/form-data" name="myform">
+                                        <input type='file' id="imageUpload" name="file" autocomplete="off" accept=".png, .jpg, .jpeg" />
+                                        <label for="imageUpload"></label>
+                                        {{ form_avatar.submit_avatar(class_="form-control upload", id="submit_avatar") }}
+                                    </form>
+                                </div>
+                                <div class="avatar-preview">
+                                    <div id="imagePreview" style="background-image: url({{ avatar_url }});">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4 class="text-center">{{ user }} {{ lastname }}</h4>
+                    </li>
+                    {% include 'includes/_subnavbar.html' %}
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="jumbotron round" style="margin-left:60px; margin-top:40px;">
+                <div class="container" style="display: flex;">
+                    {% if not available_jobs %}
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="clear"></div>
+                            <div class=" col-md-12 columns">
+                                <div class="kode-ux kode-jobboard-widget-ux">
+                                    <div class="job_opportunities_list job2" style="border-radius: 15px; margin-bottom: 10px;">
+                                        <div class="job_opportunities_text text-center">
+                                            <h5>{% print(msg) %}</h5>
+                                            <div class="job_applay_list">
+                                                <span>
+                                                    <i class="joblyoon joblyoon-heart">
+                                                        <small class="path1"></small><small class="path2"></small><small class="path3"></small><small class="path4"></small><small class="path5"></small><small class="path6"></small><small class="path7"></small><small class="path8"></small><small class="path9"></small><small class="path10"></small><small class="path11"></small><small class="path12"></small><small class="path13"></small><small class="path14"></small><small class="path15"></small><small class="path16"></small><small class="path17"></small><small class="path18"></small><small class="path19"></small><small class="path20"></small><small class="path21"></small><small class="path22"></small><small class="path23"></small><small class="path24"></small><small class="path25"></small><small class="path26"></small><small class="path27"></small><small class="path28"></small><small class="path29"></small><small class="path30"></small><small class="path31"></small><small class="path32"></small><small class="path33"></small><small class="path34"></small><small class="path35"></small><small class="path36"></small><small class="path37"></small><small class="path38"></small><small class="path39"></small><small class="path40"></small><small class="path41"></small><small class="path42"></small><small class="path43"></small><small class="path44"></small><small class="path45"></small><small class="path46"></small><small class="path47"></small><small class="path48"></small><small class="path49"></small><small class="path50"></small><small class="path51"></small><small class="path52"></small><small class="path53"></small><small class="path54"></small><small class="path55"></small><small class="path56"></small><small class="path57"></small><small class="path58"></small><small class="path59"></small><small class="path60"></small><small class="path61"></small><small class="path62"></small><small class="path63"></small><small class="path64"></small><small class="path65"></small><small class="path66"></small><small class="path67"></small><small class="path68"></small><small class="path69"></small><small class="path70"></small><small class="path71"></small><small class="path72"></small><small class="path73"></small><small class="path74"></small><small class="path75"></small><small class="path76"></small><small class="path77"></small><small class="path78"></small><small class="path79"></small><small class="path80"></small><small class="path81"></small><small class="path82"></small><small class="path83"></small><small class="path84"></small><small class="path85"></small><small class="path86"></small><small class="path87"></small><small class="path88"></small><small class="path89"></small><small class="path90"></small><small class="path91"></small><small class="path92"></small><small class="path93"></small><small class="path94"></small><small class="path95"></small><small class="path96"></small><small class="path97"></small><small class="path98"></small><small class="path99"></small><small class="path100"></small><small class="path101"></small><small class="path102"></small><small class="path103"></small><small class="path104"></small>
+                                                    </i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if available_jobs %}
+                    <div class="col-md-8" id="jobs">
+                        {% for available_job in available_jobs %}
+                        <div class="row" id="{{ available_job[0]['author'] }}-{{ available_job[0]['area'] }}">
+                            <div class="clear"></div>
+                            <div class=" col-md-12 columns">
+                                <div class="kode-ux kode-jobboard-widget-ux">
+                                    <div class="job_opportunities_list job2" style="border-radius: 15px; margin-bottom: 10px;">
+                                        <figure><img width="500" height="500" src="{{ available_job[0]['url'] }}" class="attachment-hide size-hide wp-post-image" alt="" srcset="{{ available_job[0]['url'] }}" sizes="(max-width: 500px) 100vw, 500px" style="border-radius: 40px;"></figure>
+                                        <div class="job_opportunities_text adjust_bottom">
+                                            <h5>{{available_job[0]['title']}}</h5>
+                                            <ul class="job_opportunities_meta">
+                                                <li><a href="#" id="btn_{{available_job[0]['id']}}" name="follow" value="{{available_job[0]['id']}}">Dejar de seguir <img width="25" height="25" src="{{ url_for('static', filename='images/like.png') }}" alt=""></a></li>
+                                                {% if(available_job[0]['jornada']|length > 0) %}
+                                                <li><a href="#">{{available_job[0]['jornada']}}</a></li>
+                                                {% endif %}
+                                                {% if(available_job[0]['area']|length > 0) %}
+                                                <li><a href="#">{{available_job[0]['area']}}</a></li>
+                                                {% endif %}
+                                            </ul>
+                                            <div class="job_applay_list adjust_button">
+                                                <span>
+                                                    <i class="joblyoon joblyoon-heart">
+                                                        <small class="path1"></small><small class="path2"></small><small class="path3"></small><small class="path4"></small><small class="path5"></small><small class="path6"></small><small class="path7"></small><small class="path8"></small><small class="path9"></small><small class="path10"></small><small class="path11"></small><small class="path12"></small><small class="path13"></small><small class="path14"></small><small class="path15"></small><small class="path16"></small><small class="path17"></small><small class="path18"></small><small class="path19"></small><small class="path20"></small><small class="path21"></small><small class="path22"></small><small class="path23"></small><small class="path24"></small><small class="path25"></small><small class="path26"></small><small class="path27"></small><small class="path28"></small><small class="path29"></small><small class="path30"></small><small class="path31"></small><small class="path32"></small><small class="path33"></small><small class="path34"></small><small class="path35"></small><small class="path36"></small><small class="path37"></small><small class="path38"></small><small class="path39"></small><small class="path40"></small><small class="path41"></small><small class="path42"></small><small class="path43"></small><small class="path44"></small><small class="path45"></small><small class="path46"></small><small class="path47"></small><small class="path48"></small><small class="path49"></small><small class="path50"></small><small class="path51"></small><small class="path52"></small><small class="path53"></small><small class="path54"></small><small class="path55"></small><small class="path56"></small><small class="path57"></small><small class="path58"></small><small class="path59"></small><small class="path60"></small><small class="path61"></small><small class="path62"></small><small class="path63"></small><small class="path64"></small><small class="path65"></small><small class="path66"></small><small class="path67"></small><small class="path68"></small><small class="path69"></small><small class="path70"></small><small class="path71"></small><small class="path72"></small><small class="path73"></small><small class="path74"></small><small class="path75"></small><small class="path76"></small><small class="path77"></small><small class="path78"></small><small class="path79"></small><small class="path80"></small><small class="path81"></small><small class="path82"></small><small class="path83"></small><small class="path84"></small><small class="path85"></small><small class="path86"></small><small class="path87"></small><small class="path88"></small><small class="path89"></small><small class="path90"></small><small class="path91"></small><small class="path92"></small><small class="path93"></small><small class="path94"></small><small class="path95"></small><small class="path96"></small><small class="path97"></small><small class="path98"></small><small class="path99"></small><small class="path100"></small><small class="path101"></small><small class="path102"></small><small class="path103"></small><small class="path104"></small>
+                                                    </i>
+                                                </span>
+                                                <a class="theme_btn" href="{{available_job[0]['link']}}" style="border-radius: 15px;" target="_blank">Postular al Cargo</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-4">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <a href="#" id="all">Mostrar todos</a>
+                            </li>
+                        </ul>
+                        </br>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <h5>Empresas disponibles</h5>
+                                <span class="badge badge-primary badge-pill">{{ companies|length }}</span>
+                            </li>
+                            {% for company in companies %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center company">
+                                <a href="#" name="{{ company }}">{{ company }}</a>
+                                <span class="badge badge-primary badge-pill">{{company_count[company]}}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        </br>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center area">
+                                <h5>Áreas disponibles</h5>
+                                <span class="badge badge-primary badge-pill">{{ areas|length }}</span>
+                            </li>
+                            {% for area in areas %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center area">
+                                <a href="#" name="{{ area }}">{{ area }}</a>
+                                <span class="badge badge-primary badge-pill">{{ area_count[area] }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script>
+    $('.company a').on('click', function(e) {
+        e.preventDefault();
+        var company = $(this).attr('name');
+        console.log(company)
+        $('#jobs').children().hide();
+        $('#jobs [id*="' + company + '"]').show();
+    });
+    $('.area a').on('click', function(e) {
+        e.preventDefault();
+        var area = $(this).attr('name');
+        console.log(area)
+        $('#jobs').children().hide();
+        $('#jobs [id*="' + area + '"]').show();
+    });
+    $('#all').on('click', function(e) {
+        e.preventDefault();
+        $('#jobs .row').show();
+    });
+
+    // function submitform() {   document.form.submit(); } 
+
+
+    $(document).on('click', '[id^="btn_"]', function() {
+        var spId = {
+            id: $(this).attr('id').split('_')[1]
+        };
+        $.ajax({
+            url: 'unlike',
+            method: 'POST',
+            data: {
+                id: $(this).attr('id').split('_')[1]
+            },
+            success: function(response) {
+                console.log(response);
+                location.reload();
+            },
+            error: function(error) {
+                console.log('error');
+            }
+        });
+    });
+</script>
+
+{% endblock %}
