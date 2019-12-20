@@ -163,7 +163,7 @@ class LoginForm(Form):
     
     username = StringField('Usuario', [validators.Length(min=3, max=25)])
     password = PasswordField('Password', [validators.DataRequired()])
-    #recaptcha = RecaptchaField()
+    recaptcha = RecaptchaField()
 
 # User login
 @app.route('/login', methods=['GET', 'POST'])
@@ -600,11 +600,6 @@ def unlike():
     if request.method == 'POST':
         job_id = request.form['id']
 
-        # headers = {'X-Api-Key': API_KEY_JOBS}
-        # response = requests.get('{}/job/{}'.format(API_URL, job_id), headers=headers)
-        # available_jobs = response.json()
-        # print(available_jobs)
-
         deleteLikes(job_id)
 
         return json.dumps({'status':'OK'})
@@ -687,12 +682,6 @@ def my_jobs():
             count = company.count(comp)
             count_company[comp] = count
             company_count = json.dumps(count_company)
-        
-        # if len(company_count) > 0:
-        #     company_count = json.loads(company_count)
-        # else:
-        #     company_count = 0
-
 
         bar = request.args.to_dict()
         print(bar)
