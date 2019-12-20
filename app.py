@@ -206,65 +206,6 @@ def login():
 
     return render_template('login.html', form=form)
 
-@app.route('/jobs', methods=['GET'])
-def list_jobs():
-
-    # Define variables to count jobs and companies availables
-    company = []
-    area = []
-    areas = []
-    company = []
-    count_company = {}
-    count_area = {}
-
-    headers = {'X-Api-Key': API_KEY_JOBS}
-
-    response = requests.get('{}/jobs'.format(API_URL), headers=headers)
-    available_jobs = response.json()
-
-    for available_job in available_jobs:
-        area.append(str(available_job['area']))
-        company.append(str(available_job['author']))
-    
-    companies = list(dict.fromkeys(company))
-    companies.sort()
-
-    areas = list(dict.fromkeys(area))
-    areas.sort()
-
-    for comp in companies:
-        count = company.count(comp)
-        count_company[comp] = count
-        company_count = json.dumps(count_company)
-    
-    company_count = json.loads(company_count)
-
-    bar = request.args.to_dict()
-    print(bar)
-
-
-    for each_area in areas:
-        count = area.count(each_area)
-        count_area[each_area] = count
-        area_count = json.dumps(count_area)
-    
-    area_count = json.loads(area_count)
-
-    # for work in areas:
-    #     for available_job in available_jobs:
-    #         if str(available_job['area']) == work:
-    #             count_area[work].append(str(available_job['area']))
-    #             total_work = json.dumps(count_area)
-
-    # print(count_area)
-    
-    if available_jobs:
-        return render_template('jobs.html', available_jobs=available_jobs, areas=areas, area_count=area_count, companies=companies, company_count=company_count)
-    else:
-        msg = 'No hay ofertas laborales disponibles 😕'
-        return render_template('jobs.html', msg=msg)
-
-
 # Check if user logged in
 def is_logged_in(f):
     @wraps(f)
@@ -767,6 +708,99 @@ def my_jobs():
     else:
         msg = 'No sigues ninguna oferta laboral 😕'
         return render_template('my_jobs.html', msg=msg, form_avatar=form_avatar, avatar_url=user_name['avatar'], user=user_name['name'], lastname=user_name['lastname'])
+
+@app.route('/jobs', methods=['GET'])
+@is_logged_in
+def list_jobs():
+
+    form_avatar = UploadAvatar(request.form)
+
+    # Define variables to count jobs and companies availables
+    company = []
+    area = []
+    areas = []
+    company = []
+    count_company = {}
+    count_area = {}
+
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id, avatar, name, lastname FROM users WHERE username = %s", [session['username']])
+    user_name = cur.fetchone()
+
+    if request.method == 'POST' and form_avatar.submit_avatar.data:
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('¡Error subiendo, intente denuevo!')
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            flash('No se seleccionó ningún archivo 😞')
+            return redirect(request.url)
+        if file and allowed_file_avatar(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], session['username'] + filename))
+            # Create Cursor
+            cur = mysql.connection.cursor()
+
+            # Execute
+            cur.execute("UPDATE users SET avatar=%s WHERE username=%s",('uploads/' + session['username'] + filename, session['username']))
+
+            # Commit to DB
+            mysql.connection.commit()
+
+            #Close connection
+            cur.close()
+            flash('Archivo subido de manera exitosa 😊')
+            return redirect('/my_jobs')
+        else:
+            flash('Solo puedes subir archivos jpeg, jpg y png 🙁')
+            return redirect(request.url)
+
+    headers = {'X-Api-Key': API_KEY_JOBS}
+
+    response = requests.get('{}/jobs'.format(API_URL), headers=headers)
+    available_jobs = response.json()
+    if len(available_jobs) > 0:
+        for available_job in available_jobs:
+            area.append(str(available_job['area']))
+            company.append(str(available_job['author']))
+        
+        companies = list(dict.fromkeys(company))
+        companies.sort()
+
+        areas = list(dict.fromkeys(area))
+        areas.sort()
+
+        for comp in companies:
+            count = company.count(comp)
+            count_company[comp] = count
+            company_count = json.dumps(count_company)
+        
+        company_count = json.loads(company_count)
+
+        bar = request.args.to_dict()
+        print(bar)
+
+
+        for each_area in areas:
+            count = area.count(each_area)
+            count_area[each_area] = count
+            area_count = json.dumps(count_area)
+        
+        area_count = json.loads(area_count)
+
+        # for work in areas:
+        #     for available_job in available_jobs:
+        #         if str(available_job['area']) == work:
+        #             count_area[work].append(str(available_job['area']))
+        #             total_work = json.dumps(count_area)
+
+        # print(count_area)
+        return render_template('jobs.html', available_jobs=available_jobs, areas=areas, area_count=area_count, companies=companies, company_count=company_count,  form_avatar=form_avatar, avatar_url=user_name['avatar'], user=user_name['name'], lastname=user_name['lastname'])
+    else:
+        msg = 'No hay ofertas laborales disponibles 😕'
+        return render_template('jobs.html', msg=msg,  form_avatar=form_avatar, avatar_url=user_name['avatar'], user=user_name['name'], lastname=user_name['lastname'])
+
 
 # Delete Article
 @app.route('/delete_article/<string:id>', methods=['POST'])
