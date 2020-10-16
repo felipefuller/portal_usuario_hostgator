@@ -14,7 +14,7 @@ lazy-object-proxy==1.4.3
 MarkupSafe==1.1.1
 mccabe==0.6.1
 mysqlclient==1.4.4
-passlib==1.7.1
+passlib==1.7.4
 password-strength==0.0.3.post2
 pylint==2.4.3
 six==1.12.0
