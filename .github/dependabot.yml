@@ -1,0 +1,18 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: flask-caching
+    versions:
+    - 1.10.0
+    - 1.9.0
+  - dependency-name: lazy-object-proxy
+    versions:
+    - 1.5.2
+  - dependency-name: jinja2
+    versions:
+    - 2.11.2
