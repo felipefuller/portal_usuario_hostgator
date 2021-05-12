@@ -1,5 +1,5 @@
 astroid==2.3.2
-Click==7.0
+Click==8.0.0
 Flask==1.1.1
 Flask-Caching==1.7.2
 Flask-MySQLdb==0.2.0
